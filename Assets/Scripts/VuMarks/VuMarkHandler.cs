@@ -5,6 +5,7 @@ Vuforia is a trademark of PTC Inc., registered in the United States and other
 countries.
 ===============================================================================*/
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -165,13 +166,33 @@ public class VuMarkHandler : MonoBehaviour
         switch (vuMarkTarget.InstanceId.DataType)
         {
             case InstanceIdType.BYTE:
-                return vuMarkTarget.InstanceId.HexStringValue;
+                return Reverse(ConvertHexToString(vuMarkTarget.InstanceId.HexStringValue, System.Text.Encoding.UTF8));
             case InstanceIdType.STRING:
                 return vuMarkTarget.InstanceId.StringValue;
             case InstanceIdType.NUMERIC:
                 return vuMarkTarget.InstanceId.NumericValue.ToString();
         }
         return string.Empty;
+    }
+
+    public static string ConvertHexToString(String hexInput, System.Text.Encoding encoding)
+    {
+        
+        String trimmedInput = hexInput.Substring(2).TrimStart(new char[] { '0' });
+        int numberChars = trimmedInput.Length;
+        byte[] bytes = new byte[numberChars / 2];
+        for (int i = 0; i < numberChars; i += 2)
+        {
+            bytes[i/2] = Convert.ToByte(trimmedInput.Substring(i, 2), 16);
+        }
+        return encoding.GetString(bytes);
+    }
+
+    public static string Reverse(string s)
+    {
+        char[] charArray = s.ToCharArray();
+        Array.Reverse(charArray);
+        return new string(charArray);
     }
 
     Sprite GetVuMarkImage(VuMarkBehaviour vuMarkTarget)
@@ -205,7 +226,7 @@ public class VuMarkHandler : MonoBehaviour
             // Change the description based on the VuMark ID
             switch (vuMarkIdNumeric)
             {
-                case 0x00003154:
+                case 1:
                     return "Astronaut";
                 case 2:
                     return "Drone";
