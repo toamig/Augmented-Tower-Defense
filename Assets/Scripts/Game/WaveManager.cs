@@ -83,6 +83,7 @@ public class WaveManager : MonoBehaviour
             {
                 GameObject test = Instantiate(enemyObject.enemyObject, spawn.position, spawn.rotation);
                 test.transform.LookAt(GameManager.instance.castle.transform);
+                //test.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 5));
             }
         }
     }
