@@ -41,8 +41,16 @@ public class WaveManager : MonoBehaviour
 
         if (countDown <= 0)
         {
-            StartCoroutine(SpawnWave());
-            countDown = timeBetweenWaves;
+            if(currentWave < waves.Length)
+            {
+                StartCoroutine(SpawnWave());
+                countDown = timeBetweenWaves;
+            }
+            else
+            {
+                Debug.Log("No more waves");
+            }
+                
         }
 
         countDown -= Time.deltaTime;
@@ -51,7 +59,6 @@ public class WaveManager : MonoBehaviour
 
     public IEnumerator SpawnWave()
     {
-        Debug.Log(currentWave);
 
         for (int i = 0; i < waves[currentWave].enemies.Length; i++)
         {
@@ -62,16 +69,8 @@ public class WaveManager : MonoBehaviour
             }
         }
 
-        if(currentWave + 1 == waves.Length)
-        {
-            Debug.Log("No More Waves");
-            yield break;
-        }
-        else
-        {
-            currentWave++;
-        }
-
+        currentWave++;
+        countDown = timeBetweenWaves;
                
     }
 

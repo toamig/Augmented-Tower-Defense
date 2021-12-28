@@ -35,12 +35,19 @@ public class Enemy : MonoBehaviour
 
             transform.position = position;
         }
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Projectile>() != null) { 
+        if (collision.gameObject.GetComponent<Projectile>() != null) 
+        { 
             animator.SetBool("Hit", true);
+        }
+        else if(collision.gameObject.GetComponent<Castle>() != null)
+        {
+            Destroy(gameObject);
         }
     }
 

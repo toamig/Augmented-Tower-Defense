@@ -6,6 +6,8 @@ public class Castle : MonoBehaviour
 {
     private string objectiveName = "portal";
 
+    public int healthPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +25,20 @@ public class Castle : MonoBehaviour
 
             gameObject.transform.LookAt(targetPosition);
         }
+
+        if (healthPoints <= 0)
+        {
+            Debug.Log("GGWP");
+        }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
+        {
+            healthPoints -= enemy.attackDamage;
+        }
+    }
+
+
 }

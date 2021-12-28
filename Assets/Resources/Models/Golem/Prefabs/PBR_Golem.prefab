@@ -73,8 +73,7 @@ GameObject:
   - component: {fileID: 4408297863206454}
   - component: {fileID: 95380085654935804}
   - component: {fileID: 2072012885}
-  - component: {fileID: -8601232189991713447}
-  - component: {fileID: 489209666741418442}
+  - component: {fileID: 8398120798463782688}
   m_Layer: 3
   m_Name: PBR_Golem
   m_TagString: Untagged
@@ -136,7 +135,7 @@ MonoBehaviour:
   goldOnKill: 50
   ranged: 0
   animator: {fileID: 95380085654935804}
---- !u!54 &-8601232189991713447
+--- !u!54 &8398120798463782688
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +143,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067925524328404}
   serializedVersion: 2
-  m_Mass: 1000
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -152,19 +151,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &489209666741418442
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1067925524328404}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.21, y: 3.81, z: 1.84}
-  m_Center: {x: 0, y: 1.88, z: 0}
 --- !u!1 &1088256926929212
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4586698080960910}
+  - component: {fileID: 5273666795831490586}
   m_Layer: 3
   m_Name: Foot_R
   m_TagString: Untagged
@@ -731,6 +718,19 @@ Transform:
   m_Father: {fileID: 4666209637773138}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5273666795831490586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814538973625876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 90, y: 19, z: 75}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1826563211054600
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4568342525605728}
+  - component: {fileID: 5802148843443479754}
   m_Layer: 3
   m_Name: Foot_L
   m_TagString: Untagged
@@ -795,6 +796,19 @@ Transform:
   m_Father: {fileID: 4329124710843428}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5802148843443479754
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931801959295246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 90, y: 19, z: 75}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1954991957837146
 GameObject:
   m_ObjectHideFlags: 0
