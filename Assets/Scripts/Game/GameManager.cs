@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         InitializeManagers();
+
+        GameEvents.instance.OnObjectiveDetected += CastleDetected;
     }
 
     private void Update()
@@ -45,6 +47,11 @@ public class GameManager : MonoBehaviour
         _castle = GameObject.Find("castle");
         _portal = GameObject.Find("portal");
 
+    }
+
+    private void CastleDetected()
+    {
+        Debug.Log("CASTLE DETECTED");
     }
 
     //private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)

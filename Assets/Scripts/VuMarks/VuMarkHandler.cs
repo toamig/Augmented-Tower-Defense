@@ -128,6 +128,15 @@ public class VuMarkHandler : MonoBehaviour
         SetVuMarkInfoForCanvas(vuMarkBehaviour);
         SetVuMarkAugmentation(vuMarkBehaviour);
         SetVuMarkOpticalSeeThroughConfig(vuMarkBehaviour);
+
+        if(GetVuMarkId(vuMarkBehaviour) == "Init")
+        {
+            GameEvents.instance.SpawnDetected();
+        }
+        else if (GetVuMarkId(vuMarkBehaviour) == "End")
+        {
+            GameEvents.instance.ObjectiveDetected();
+        }
     }
 
     void OnVuMarkLost(VuMarkBehaviour vuMarkBehaviour)
