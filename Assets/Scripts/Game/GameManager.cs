@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     private GameObject _castle;
     public GameObject castle => _castle;
 
+    private bool castleDetected;
+    private bool portalDetected;
+
+    public bool gameStarted;
+
 
     public void Awake()
     {
@@ -37,21 +42,43 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        castleDetected = false;
+        portalDetected = false;
+        gameStarted = false;
+
         InitializeManagers();
 
         GameEvents.instance.OnObjectiveDetected += CastleDetected;
+        GameEvents.instance.OnSpawnDetected += PortalDetected;
     }
 
     private void Update()
     {
-        _castle = GameObject.Find("castle");
-        _portal = GameObject.Find("portal");
-
+        if (gameStarted)
+        {
+            _castle = GameObject.Find("castle");
+            _portal = GameObject.Find("portal");
+        }
     }
 
     private void CastleDetected()
     {
-        Debug.Log("CASTLE DETECTED");
+        castleDetected = true;
+
+        if (portalDetected)
+        {
+            GameEvents.instance.SpawnAndObjectiveDetected();
+        }
+    }
+
+    private void PortalDetected()
+    {
+        portalDetected = true;
+
+        if (castleDetected)
+        {
+            GameEvents.instance.SpawnAndObjectiveDetected();
+        }
     }
 
     //private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)

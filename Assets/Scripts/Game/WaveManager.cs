@@ -36,25 +36,26 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        spawn = GameManager.instance.portal.transform;
-
-        if (countDown <= 0)
+        if (GameManager.instance.gameStarted)
         {
-            if(currentWave < waves.Length)
+            spawn = GameManager.instance.portal.transform;
+
+            if (countDown <= 0)
             {
-                StartCoroutine(SpawnWave());
-                countDown = timeBetweenWaves;
+                if (currentWave < waves.Length)
+                {
+                    StartCoroutine(SpawnWave());
+                    countDown = timeBetweenWaves;
+                }
+                else
+                {
+                    Debug.Log("No more waves");
+                }
+
             }
-            else
-            {
-                Debug.Log("No more waves");
-            }
-                
+
+            countDown -= Time.deltaTime;
         }
-
-        countDown -= Time.deltaTime;
-
     }
 
     public IEnumerator SpawnWave()

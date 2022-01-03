@@ -32,4 +32,10 @@ public class GameEvents
         OnObjectiveDetected?.Invoke();
     }
 
+    public event Action OnSpawnAndObjectiveDetected;
+    public void SpawnAndObjectiveDetected()
+    {
+        OnSpawnAndObjectiveDetected?.Invoke();
+    }
+
 }
