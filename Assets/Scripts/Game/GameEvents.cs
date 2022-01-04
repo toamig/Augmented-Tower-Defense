@@ -38,4 +38,34 @@ public class GameEvents
         OnSpawnAndObjectiveDetected?.Invoke();
     }
 
+    public event Action OnWaveChange;
+    public void WaveChange()
+    {
+        OnWaveChange?.Invoke();
+    }
+
+    public event Action OnDamageTaken;
+    public void DamageTaken()
+    {
+        OnDamageTaken?.Invoke();
+    }
+
+    public event Action OnStartGame;
+    public void StartGame()
+    {
+        OnStartGame?.Invoke();
+    }
+
+    public event Action OnVictory;
+    public void Victory()
+    {
+        OnVictory?.Invoke();
+    }
+
+    public event Action OnDefeat;
+    public void Defeat()
+    {
+        OnDefeat?.Invoke();
+    }
+
 }

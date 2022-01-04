@@ -39,6 +39,7 @@ public class Castle : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
             healthPoints -= enemy.attackDamage;
+            GameEvents.instance.DamageTaken();
         }
     }
 

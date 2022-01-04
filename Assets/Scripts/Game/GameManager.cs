@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
 
     public bool gameStarted;
 
-
     public void Awake()
     {
         if (_instance == null)
@@ -64,6 +63,7 @@ public class GameManager : MonoBehaviour
     private void CastleDetected()
     {
         castleDetected = true;
+        _castle = GameObject.Find("castle");
 
         if (portalDetected)
         {
@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     private void PortalDetected()
     {
         portalDetected = true;
+        _portal = GameObject.Find("portal");
 
         if (castleDetected)
         {

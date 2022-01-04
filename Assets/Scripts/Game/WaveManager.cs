@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    public enum SpawnState { SPAWNING, WAITING, COUNTING };
+
     public float timeBetweenWaves;
 
-    private float countDown;
+    public float waveCountDown;
 
-    private int currentWave;
+    public float searchCountDown;
+
+    public int nextWave;
+
+    private SpawnState state = SpawnState.COUNTING;
 
     [System.Serializable]
     public struct EnemyObject
@@ -23,14 +29,13 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     public Wave[] waves;
 
-    private Transform spawn;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        countDown = 2f;
-        currentWave = 0;
+        waveCountDown = 3f;
+        searchCountDown = 1f;
+        nextWave = 0;
     }
 
     // Update is called once per frame
@@ -38,53 +43,96 @@ public class WaveManager : MonoBehaviour
     {
         if (GameManager.instance.gameStarted)
         {
-            spawn = GameManager.instance.portal.transform;
-
-            if (countDown <= 0)
+            if (state == SpawnState.WAITING)
             {
-                if (currentWave < waves.Length)
+                if (!EnemyIsAlive())
                 {
-                    StartCoroutine(SpawnWave());
-                    countDown = timeBetweenWaves;
+                    WaveCompleted();
                 }
                 else
                 {
-                    Debug.Log("No more waves");
+                    return;
+                }
+            }
+
+            if (waveCountDown <= 0)
+            {
+                GameEvents.instance.WaveChange();
+
+                if (state != SpawnState.SPAWNING)
+                {
+                    StartCoroutine(SpawnWave(waves[nextWave]));
                 }
 
             }
-
-            countDown -= Time.deltaTime;
+            else
+            {
+                waveCountDown -= Time.deltaTime;
+            }                           
         }
     }
 
-    public IEnumerator SpawnWave()
+    public void WaveCompleted()
     {
+        state = SpawnState.COUNTING;
+        waveCountDown = timeBetweenWaves;
 
-        for (int i = 0; i < waves[currentWave].enemies.Length; i++)
+        if(nextWave + 1 > waves.Length - 1)
         {
-            for (int j = 0; j < waves[currentWave].enemies[i].count; j++)
+            nextWave = 0;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            nextWave++;
+        }
+    }
+
+    public IEnumerator SpawnWave(Wave wave)
+    {
+        state = SpawnState.SPAWNING;
+
+        for (int i = 0; i < wave.enemies.Length; i++)
+        {
+            for (int j = 0; j < wave.enemies[i].count; j++)
             {
-                SpawnEnemy(waves[currentWave].enemies[i].enemyType);
-                yield return new WaitForSeconds(waves[currentWave].timeBetweenEnemies);
+                Debug.Log("Spawning");
+                SpawnEnemy(wave.enemies[i].enemyType);
+                yield return new WaitForSeconds(wave.timeBetweenEnemies);
             }
         }
 
-        currentWave++;
-        countDown = timeBetweenWaves;
+        state = SpawnState.WAITING;
+        yield break;
                
     }
 
     public void SpawnEnemy(EnemyType enemyType)
     {
+        Transform spawnTransform = GameManager.instance.portal.transform;
+
         foreach(EnemyObject enemyObject in enemyObjects)
         {
             if(enemyObject.enemyType == enemyType)
             {
-                GameObject test = Instantiate(enemyObject.enemyObject, spawn.position, spawn.rotation);
+                GameObject test = Instantiate(enemyObject.enemyObject, spawnTransform.position, spawnTransform.rotation);
                 test.transform.LookAt(GameManager.instance.castle.transform);
                 //test.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 5));
             }
         }
+    }
+
+    bool EnemyIsAlive()
+    {
+        searchCountDown -= Time.deltaTime;
+        if(searchCountDown <= 0f)
+        {
+            searchCountDown = 1f;
+            if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
