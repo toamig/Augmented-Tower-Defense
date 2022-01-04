@@ -19,6 +19,7 @@ public class TurretAI : MonoBehaviour {
     public float shootCoolDown;
     private float timer;
     public float loockSpeed;
+    public float cost;
 
     //public Quaternion randomRot;
     public Vector3 randomRot;
@@ -35,9 +36,15 @@ public class TurretAI : MonoBehaviour {
 
     private Transform lockOnPos;
 
+    private GameObject _gold;
+    public GameObject gold => _gold;
+
     //public TurretShoot_Base shotScript;
 
     void Start () {
+        _gold = GameObject.Find("Gold");
+        _gold.GetComponent<GoldManager>().TurretSpawn(gameObject, cost);
+
         InvokeRepeating("ChackForTarget", 0, 0.5f);
         //shotScript = GetComponent<TurretShoot_Base>();
 
@@ -210,5 +217,10 @@ public class TurretAI : MonoBehaviour {
             Projectile projectile = missleGo.GetComponent<Projectile>();
             projectile.target = currentTarget.transform;
         }
+    }
+
+    public void OnDestroy()
+    {
+        _gold.GetComponent<GoldManager>().TurretDelete(cost);
     }
 }
