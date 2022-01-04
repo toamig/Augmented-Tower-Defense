@@ -38,8 +38,8 @@ public class GoldManager : MonoBehaviour
             else
             {
                 t1Active = true;
-                gold.text = (goldInt - 100).ToString();
                 goldInt -= 100;
+                gold.text = goldInt.ToString();
                 _turret1.SetActive(true);
             }
         }
@@ -47,8 +47,8 @@ public class GoldManager : MonoBehaviour
         if(_turret1 == null && t1Active == true)
         {
             t1Active = false;
-            gold.text = (goldInt + 100).ToString();
             goldInt += 100;
+            gold.text = goldInt.ToString();
         }
 
         if (_turret2 != null && t2Active == false)
@@ -60,8 +60,8 @@ public class GoldManager : MonoBehaviour
             else
             {
                 t2Active = true;
-                gold.text = (goldInt - 200).ToString();
                 goldInt -= 200;
+                gold.text = goldInt.ToString();
                 _turret2.SetActive(true);
             }
         }
@@ -69,8 +69,17 @@ public class GoldManager : MonoBehaviour
         if (_turret2 == null && t2Active == true)
         {
             t2Active = false;
-            gold.text = (goldInt + 200).ToString();
             goldInt += 200;
+            gold.text = goldInt.ToString();
+        }
+    }
+
+    public void EnemyKilled(string enemy)
+    {
+        if(enemy == "enemy1")
+        {
+            goldInt += 10;
+            gold.text = goldInt.ToString();
         }
     }
 }
