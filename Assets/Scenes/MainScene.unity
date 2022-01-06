@@ -2011,6 +2011,7 @@ GameObject:
   - component: {fileID: 661698190}
   - component: {fileID: 661698194}
   - component: {fileID: 661698193}
+  - component: {fileID: 661698195}
   m_Layer: 5
   m_Name: Gold
   m_TagString: Untagged
@@ -2138,6 +2139,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661698188}
   m_CullTransparentMesh: 1
+--- !u!114 &661698195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661698188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbc0fe3ed1b7984684b4ded9f0d2e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: {fileID: 861663528}
+  goldValue: 100
 --- !u!1 &717459241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,6 +2375,7 @@ MonoBehaviour:
   attackDamage: 10
   shootCoolDown: 1
   loockSpeed: 100
+  cost: 100
   randomRot: {x: 0, y: 0, z: 0}
   animator: {fileID: 0}
   turretType: 1
@@ -2874,6 +2890,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932880640}
   m_CullTransparentMesh: 0
+--- !u!21 &937000820
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'ATD_VuMarkMaterial
+
+    19336'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 25569e9b653e7723820baae72f3b8765, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &967949144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,35 +3027,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967949144}
   m_CullTransparentMesh: 0
---- !u!21 &1020864792
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'ATD_VuMarkMaterial
-
-    17814'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 25569e9b653e7723820baae72f3b8765, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1044200345
 GameObject:
   m_ObjectHideFlags: 0
@@ -3619,7 +3635,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1020864792}
+  - {fileID: 937000820}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3990,6 +4006,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4af3966dba2cd746ab019083640eb8c, type: 3}
+--- !u!1 &1574472694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1591110490357510, guid: d4af3966dba2cd746ab019083640eb8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1574472693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1574472695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574472694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c02d99ed6d2ff5f4da31f151e897a3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
+  turreyHead: {fileID: 0}
+  attackDist: 10
+  attackDamage: 0
+  shootCoolDown: 0
+  loockSpeed: 0
+  cost: 200
+  randomRot: {x: 0, y: 0, z: 0}
+  animator: {fileID: 0}
+  turretType: 1
+  muzzleMain: {fileID: 0}
+  muzzleSub: {fileID: 0}
+  muzzleEff: {fileID: 0}
+  bullet: {fileID: 0}
 --- !u!1 &1577767684
 GameObject:
   m_ObjectHideFlags: 0
