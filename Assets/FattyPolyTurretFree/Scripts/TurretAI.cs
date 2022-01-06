@@ -39,6 +39,11 @@ public class TurretAI : MonoBehaviour {
     private GameObject _gold;
     public GameObject gold => _gold;
 
+    public Material activeMaterial;
+    public Material inactiveMaterial;
+
+    public bool set = false;
+
     //public TurretShoot_Base shotScript;
 
     void Start () {
@@ -57,37 +62,49 @@ public class TurretAI : MonoBehaviour {
     }
 	
 	void Update () {
-        if (currentTarget != null)
-        {
-            FollowTarget();
-
-            float currentTargetDist = Vector3.Distance(transform.position, currentTarget.transform.position);
-            if (currentTargetDist > attackDist)
-            {
-                currentTarget = null;
-            }
-        }
-        else
-        {
-            IdleRitate();
-        }
-
-        timer += Time.deltaTime;
-        if (timer >= shootCoolDown)
+        if (set)
         {
             if (currentTarget != null)
             {
-                timer = 0;
-                
-                if (animator != null)
+                FollowTarget();
+
+                float currentTargetDist = Vector3.Distance(transform.position, currentTarget.transform.position);
+                if (currentTargetDist > attackDist)
                 {
-                    animator.SetTrigger("Fire");
-                    ShootTrigger();
+                    currentTarget = null;
                 }
-                else
+            }
+            else
+            {
+                IdleRitate();
+            }
+
+            timer += Time.deltaTime;
+            if (timer >= shootCoolDown)
+            {
+                if (currentTarget != null)
                 {
-                    ShootTrigger();
+                    timer = 0;
+
+                    if (animator != null)
+                    {
+                        animator.SetTrigger("Fire");
+                        ShootTrigger();
+                    }
+                    else
+                    {
+                        ShootTrigger();
+                    }
                 }
+            }
+        }
+
+        else
+        {
+            if(_gold.GetComponent<GoldManager>().goldValue >= cost)
+            {
+                _gold.GetComponent<GoldManager>().TurretSpawn(gameObject, cost);
+                activeTurret();
             }
         }
 	}
@@ -221,6 +238,27 @@ public class TurretAI : MonoBehaviour {
 
     public void OnDestroy()
     {
-        _gold.GetComponent<GoldManager>().TurretDelete(cost);
+        if (set)
+        {
+            _gold.GetComponent<GoldManager>().TurretDelete(cost);
+        }
+    }
+
+    public void inactiveTurret()
+    {
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            if(r.name != "Quad")
+                r.material = inactiveMaterial;
+        }
+    }
+
+    public void activeTurret()
+    {
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            if (r.name != "Quad")
+                r.material = activeMaterial;
+        }
     }
 }

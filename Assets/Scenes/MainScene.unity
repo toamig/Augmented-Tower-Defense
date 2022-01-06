@@ -2152,7 +2152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gold: {fileID: 861663528}
-  goldValue: 100
+  goldValue: 200
 --- !u!1 &717459241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,6 +2383,9 @@ MonoBehaviour:
   muzzleSub: {fileID: 0}
   muzzleEff: {fileID: 735647589}
   bullet: {fileID: 1230967522142342, guid: eb167afc8ab53774898a71ad9c87e1e8, type: 3}
+  activeMaterial: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 5726faa88aa0dd94aa88ea194b9e4295, type: 2}
+  set: 0
 --- !u!1 &735647589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1412543531084458, guid: 7191a0df8b6695d449a0f18a361bc311,
@@ -4038,6 +4041,9 @@ MonoBehaviour:
   muzzleSub: {fileID: 0}
   muzzleEff: {fileID: 0}
   bullet: {fileID: 0}
+  activeMaterial: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 5726faa88aa0dd94aa88ea194b9e4295, type: 2}
+  set: 0
 --- !u!1 &1577767684
 GameObject:
   m_ObjectHideFlags: 0

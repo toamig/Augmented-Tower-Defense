@@ -38,13 +38,13 @@ public class GoldManager : MonoBehaviour
     {
         if (goldValue - cost < 0)
         {
-            Destroy(turret);
-            goldValue -= cost;
+            turret.GetComponent<TurretAI>().inactiveTurret();
         }
         else
         {
             goldValue -= cost;
             gold.text = goldValue.ToString();
+            turret.GetComponent<TurretAI>().set = true;
         }
     }
 
