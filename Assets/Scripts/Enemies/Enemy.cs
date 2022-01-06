@@ -14,8 +14,6 @@ public class Enemy : MonoBehaviour
 
     public Animator animator;
 
-    private string objectiveName = "castle";
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,14 +25,11 @@ public class Enemy : MonoBehaviour
     {
         animator.SetFloat("MovSpeed", movementSpeed);
 
-        GameObject objective = GameObject.Find(objectiveName);
+        GameObject castle = GameManager.instance.castle;
 
-        if (objective != null)
-        {
-            Vector3 position = Vector3.MoveTowards(transform.position, objective.transform.position, movementSpeed * Time.deltaTime);
+        Vector3 position = Vector3.MoveTowards(transform.position, castle.transform.position, movementSpeed * Time.deltaTime);
 
-            transform.position = position;
-        }
+        transform.position = position;
 
 
     }

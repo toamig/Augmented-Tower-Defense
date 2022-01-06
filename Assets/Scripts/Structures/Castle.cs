@@ -6,12 +6,14 @@ public class Castle : MonoBehaviour
 {
     private string objectiveName = "portal";
 
-    public int healthPoints;
+    public float healthPoints;
+
+    public float maxHealthPoints;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        healthPoints = maxHealthPoints;
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class Castle : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
             healthPoints -= enemy.attackDamage;
+            GameEvents.instance.DamageTaken();
         }
     }
 
