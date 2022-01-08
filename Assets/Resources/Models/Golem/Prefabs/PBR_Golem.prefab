@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4408297863206454}
   - component: {fileID: 95380085654935804}
   - component: {fileID: 2072012885}
-  - component: {fileID: 8398120798463782688}
+  - component: {fileID: 4982489947740786370}
   m_Layer: 3
   m_Name: PBR_Golem
   m_TagString: Enemy
@@ -110,7 +110,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: dab6ec9d12bf05549904fbcdbb83230a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -133,24 +133,25 @@ MonoBehaviour:
   attackSpeed: 0.5
   movementSpeed: 1
   goldOnKill: 50
-  ranged: 0
   animator: {fileID: 95380085654935804}
---- !u!54 &8398120798463782688
-Rigidbody:
+--- !u!143 &4982489947740786370
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067925524328404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
+  m_Height: 4
+  m_Radius: 1
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 2, z: 0.21}
 --- !u!1 &1088256926929212
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +558,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4818361460809012}
-  - component: {fileID: 569100576}
   m_Layer: 3
   m_Name: Index_Proximal_R
   m_TagString: Untagged
@@ -579,20 +579,6 @@ Transform:
   m_Father: {fileID: 4699477660470766}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &569100576
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1620575693851942}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 73.7
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 1.07, y: -6.94, z: -6.4}
 --- !u!1 &1623131121118994
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +681,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4586698080960910}
-  - component: {fileID: 5273666795831490586}
   m_Layer: 3
   m_Name: Foot_R
   m_TagString: Untagged
@@ -718,19 +703,6 @@ Transform:
   m_Father: {fileID: 4666209637773138}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5273666795831490586
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814538973625876}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 90, y: 19, z: 75}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1826563211054600
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +745,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4568342525605728}
-  - component: {fileID: 5802148843443479754}
   m_Layer: 3
   m_Name: Foot_L
   m_TagString: Untagged
@@ -796,19 +767,6 @@ Transform:
   m_Father: {fileID: 4329124710843428}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5802148843443479754
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931801959295246}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 90, y: 19, z: 75}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1954991957837146
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,41 +7,101 @@ public class Enemy : MonoBehaviour
 
     public int helthPoints;
     public int attackDamage;
-    public float attackSpeed;
     public float movementSpeed;
     public int goldOnKill;
-    public bool ranged;
+
+    private CharacterController controler;
+
+    private Transform[] points;
+    private Transform target;
+    private int wayPointIndex;
+    private float rotationFactor = 2.0f;
 
     public Animator animator;
+
+    private float countDown = 3f;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator.SetFloat("MovSpeed", movementSpeed);
 
+        controler = GetComponent<CharacterController>();
+
+        GameObject wayPoints = GameObject.Find("WayPoints");
+
+        points = new Transform[wayPoints.transform.childCount];
+
+        for (int i = 0; i < points.Length; i++)
+        {
+            points[i] = wayPoints.transform.GetChild(i);
+        }
+
+        wayPointIndex = 0;
+        target = points[wayPointIndex];
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        animator.SetFloat("MovSpeed", movementSpeed);
+        if(wayPointIndex >= 1)
+        {
+            HandleRotation();
+        }
 
-        GameObject castle = GameManager.instance.castle;
+        Vector3 dir = target.position - transform.position;
+        controler.SimpleMove(dir.normalized * movementSpeed);
 
-        Vector3 position = Vector3.MoveTowards(transform.position, castle.transform.position, movementSpeed * Time.deltaTime);
+        
 
-        transform.position = position;
+        if (Vector3.Distance(transform.position, target.position) < 0.2f)
+        {
+            GetNextWayPoint();
+        }
+
+    }
+
+    private void HandleRotation()
+    {
+        Vector3 lookAtPos;
+
+        lookAtPos.x = target.position.x;
+        lookAtPos.y = transform.position.y;
+        lookAtPos.z = target.position.z;
+
+        Quaternion currentRotation = transform.rotation;
+        Quaternion targetRotation = Quaternion.LookRotation(lookAtPos - transform.position);
+        transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactor * Time.deltaTime);
 
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void GetNextWayPoint()
     {
-        if (collision.gameObject.GetComponent<Projectile>() != null) 
-        { 
+        if(wayPointIndex >= points.Length - 1)
+        {
+            target = GameManager.instance.castle.transform;
+        }
+        else
+        {
+            wayPointIndex++;
+            target = points[wayPointIndex];
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.GetComponent<Projectile>() != null)
+        {
             animator.SetBool("Hit", true);
         }
-        else if(collision.gameObject.GetComponent<Castle>() != null)
+        else if (hit.gameObject.GetComponent<Castle>() != null)
         {
+            Castle castle = GameManager.instance.castle.GetComponent<Castle>();
+
+            castle.healthPoints -= attackDamage;
+            GameEvents.instance.DamageTaken();
+
             Destroy(gameObject);
         }
     }

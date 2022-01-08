@@ -20,22 +20,10 @@ public class GameEvents
 
     }
 
-    public event Action OnSpawnDetected;
-    public void SpawnDetected()
+    public event Action OnMapDetected;
+    public void MapDetected()
     {
-        OnSpawnDetected?.Invoke();
-    }
-
-    public event Action OnObjectiveDetected;
-    public void ObjectiveDetected()
-    {
-        OnObjectiveDetected?.Invoke();
-    }
-
-    public event Action OnSpawnAndObjectiveDetected;
-    public void SpawnAndObjectiveDetected()
-    {
-        OnSpawnAndObjectiveDetected?.Invoke();
+        OnMapDetected?.Invoke();
     }
 
     public event Action OnWaveChange;

@@ -9,14 +9,14 @@ public class GameUI : MonoBehaviour
     public GameObject healthBar;
     public GameObject gold;
     public GameObject waves;
-    public GameObject speedUp;
-    public GameObject pauseGame;
-    public GameObject startGame;
+    public Toggle speedUp;
+    public Button pauseGame;
+    public Button startGame;
 
     private void Awake()
     {
         GameEvents.instance.OnStartGame += InitializeUI;
-        GameEvents.instance.OnSpawnAndObjectiveDetected += () => startGame.SetActive(true);
+        GameEvents.instance.OnMapDetected += () => startGame.gameObject.SetActive(true);
         GameEvents.instance.OnWaveChange += UpdateWaves;
         GameEvents.instance.OnDamageTaken += UpdateHealthBar;
     }
@@ -47,9 +47,13 @@ public class GameUI : MonoBehaviour
     public void SetupButtons()
     {
         //Start
-        startGame.GetComponent<Button>().onClick.AddListener(() => GameManager.instance.gameStarted = true);
-        startGame.GetComponent<Button>().onClick.AddListener(() => GameEvents.instance.StartGame());
-        startGame.GetComponent<Button>().onClick.AddListener(() => startGame.SetActive(false));
+        startGame.onClick.AddListener(() => GameManager.instance.gameStarted = true);
+        startGame.onClick.AddListener(() => GameEvents.instance.StartGame());
+        startGame.onClick.AddListener(() => startGame.gameObject.SetActive(false));
+
+        //SpeedUp
+        speedUp.onValueChanged.AddListener((value) => SpeedUpGame(value));
+
 
     }
 
@@ -64,6 +68,18 @@ public class GameUI : MonoBehaviour
     private void UpdateWaves()
     {
         waves.GetComponentInChildren<Text>().text = (GameManager.instance.waveManager.nextWave + 1).ToString("D2") + "/" + GameManager.instance.waveManager.waves.Length.ToString("D2");
+    }
+
+    private void SpeedUpGame(bool value)
+    {
+        if (value)
+        {
+            Time.timeScale = 2.5f;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
 
