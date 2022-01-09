@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
 
-    public int helthPoints;
-    public int attackDamage;
+    public float healthPoints;
+    public float currentHealth;
+    public float attackDamage;
     public float movementSpeed;
-    public int goldOnKill;
+    public float goldOnKill;
 
     private CharacterController controler;
 
@@ -18,12 +20,13 @@ public class Enemy : MonoBehaviour
     private float rotationFactor = 2.0f;
 
     public Animator animator;
-
-    private float countDown = 3f;
+    public Slider healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = healthPoints;
+
         animator.SetFloat("MovSpeed", movementSpeed);
 
         controler = GetComponent<CharacterController>();
@@ -52,13 +55,22 @@ public class Enemy : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         controler.SimpleMove(dir.normalized * movementSpeed);
 
-        
-
         if (Vector3.Distance(transform.position, target.position) < 0.2f)
         {
             GetNextWayPoint();
         }
 
+        if(currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
+    private void LateUpdate()
+    {
+        healthBar.transform.LookAt(Camera.main.transform);
+        healthBar.transform.Rotate(0, 180, 0);
     }
 
     private void HandleRotation()
@@ -89,13 +101,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void UpdateHealthBar()
+    {
+        healthBar.value = currentHealth / healthPoints;
+    }
+
+    public void Upgrade()
+    {
+
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.GetComponent<Projectile>() != null)
-        {
-            animator.SetBool("Hit", true);
-        }
-        else if (hit.gameObject.GetComponent<Castle>() != null)
+        if (hit.gameObject.GetComponent<Castle>() != null)
         {
             Castle castle = GameManager.instance.castle.GetComponent<Castle>();
 

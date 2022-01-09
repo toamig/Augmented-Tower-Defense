@@ -8,8 +8,6 @@ public class Portal : MonoBehaviour
 {
     public Material material;
 
-    private string objectiveName = "castle";
-
     // Start is called before the first frame update
     void Start()
     {
