@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vuforia;
 
 public class TurretAI : MonoBehaviour {
 
@@ -31,13 +32,20 @@ public class TurretAI : MonoBehaviour {
     public Transform muzzleSub;
     public GameObject muzzleEff;
     public GameObject bullet;
+
+    public GameObject levelUpParticles;
     private bool shootLeft = true;
 
     private Transform lockOnPos;
 
+    private int maxLevel = 3;
+    private int currentLevel;
+
     //public TurretShoot_Base shotScript;
 
     void Start () {
+        currentLevel = 1;
+
         InvokeRepeating("CheckForTarget", 0, 0.5f);
         //shotScript = GetComponent<TurretShoot_Base>();
 
@@ -183,7 +191,7 @@ public class TurretAI : MonoBehaviour {
             GameObject missleGo = Instantiate(bullet, muzzleMain.transform.position, muzzleMain.rotation);
             Projectile projectile = missleGo.GetComponent<Projectile>();
             projectile.target = lockOnPos;
-            projectile.attackDamage = attackDamage;
+            projectile.attackDamage = attackDamage; 
         }
         else if(turretType == TurretType.Dual)
         {
@@ -213,6 +221,37 @@ public class TurretAI : MonoBehaviour {
             Projectile projectile = missleGo.GetComponent<Projectile>();
             projectile.target = currentTarget.transform;
             projectile.attackDamage = attackDamage;
+        }
+    }
+
+    public void Upgrade()
+    {
+        if (currentLevel < maxLevel)
+        {
+            attackDamage *= 1.5f;
+            attackDist *= 1.2f;
+            transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            ParticleSystem[] particles = levelUpParticles.GetComponentsInChildren<ParticleSystem>();
+
+            foreach(ParticleSystem particle in particles)
+            {
+                particle.Play();
+            }
+
+            // save current augmentation state
+            VuMarkHandler vuMarkHandler = GameManager.instance.vuMarkHandler;
+            VuMarkBehaviour vuMarkBehaviour = GetComponentInParent<VuMarkBehaviour>();
+            vuMarkHandler.SaveVuMarkAugmentation(vuMarkBehaviour);
+
+            currentLevel++;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Upgrade"){
+            Upgrade();
+            Destroy(other.gameObject);
         }
     }
 }

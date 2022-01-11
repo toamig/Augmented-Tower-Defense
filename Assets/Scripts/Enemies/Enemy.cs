@@ -106,11 +106,6 @@ public class Enemy : MonoBehaviour
         healthBar.value = currentHealth / healthPoints;
     }
 
-    public void Upgrade()
-    {
-
-    }
-
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.GetComponent<Castle>() != null)

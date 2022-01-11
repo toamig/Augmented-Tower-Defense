@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     private WaveManager _waveManager;
     public WaveManager waveManager => _waveManager;
 
+    private VuMarkHandler _vuMarkHandler;
+    public VuMarkHandler vuMarkHandler => _vuMarkHandler;
+
     private GameObject _portal;
     public GameObject portal => _portal;
 
@@ -73,6 +76,7 @@ public class GameManager : MonoBehaviour
     public void InitializeManagers()
     {
         _waveManager = GameObject.FindObjectOfType<WaveManager>();
+        _vuMarkHandler = GameObject.FindObjectOfType<VuMarkHandler>();
         //_uIManager = GameObject.FindObjectOfType<UIManager>();
         //_cameraManager = GameObject.FindObjectOfType<CameraManager>();
         //_popUpDialogManager = GameObject.FindObjectOfType<PopUpDialogManager>();

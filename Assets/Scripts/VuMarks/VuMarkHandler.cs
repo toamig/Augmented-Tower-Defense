@@ -133,6 +133,15 @@ public class VuMarkHandler : MonoBehaviour
         {
             GameEvents.instance.MapDetected();
         }
+
+        if (GetVuMarkId(vuMarkBehaviour) == "T1" || GetVuMarkId(vuMarkBehaviour) == "T2" || GetVuMarkId(vuMarkBehaviour) == "T3")
+        {
+            vuMarkBehaviour.gameObject.GetComponent<VuMarkObserverEventHandler>().StatusFilter = DefaultObserverEventHandler.TrackingStatusFilter.Tracked_ExtendedTracked;
+        }
+        else
+        {
+            vuMarkBehaviour.gameObject.GetComponent<VuMarkObserverEventHandler>().StatusFilter = DefaultObserverEventHandler.TrackingStatusFilter.Tracked;
+        }
     }
 
     void OnVuMarkLost(VuMarkBehaviour vuMarkBehaviour)
@@ -276,8 +285,16 @@ public class VuMarkHandler : MonoBehaviour
 
         if (sourceAugmentation == null) 
             return;
-        
+
         Instantiate(sourceAugmentation, vuMarkBehaviour.transform);
+    }
+
+    public void SaveVuMarkAugmentation(VuMarkBehaviour vuMarkBehaviour)
+    {
+        GameObject currentAugmentation = vuMarkBehaviour.gameObject.transform.GetComponentInChildren<Augmentation>().gameObject;
+
+        SetValueOnDictionary(mVuMarkAugmentationObjects,
+            GetVuMarkId(vuMarkBehaviour), currentAugmentation);
     }
 
     void SetVuMarkOpticalSeeThroughConfig(VuMarkBehaviour vuMarkBehaviour)
@@ -372,6 +389,14 @@ public class VuMarkHandler : MonoBehaviour
             return value;
         }
         return default;
+    }
+
+    void SetValueOnDictionary<T>(Dictionary<string, T> dictionary, string key, T value)
+    {
+        if (dictionary.ContainsKey(key))
+        {
+            dictionary[key] = value;
+        }
     }
 
     void ToggleRenderers(GameObject obj, bool enable)
