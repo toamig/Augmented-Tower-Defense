@@ -20,6 +20,7 @@ public class TurretAI : MonoBehaviour {
     public float shootCoolDown;
     private float timer;
     public float loockSpeed;
+    public float cost;
 
     //public Quaternion randomRot;
     public Vector3 randomRot;
@@ -40,6 +41,13 @@ public class TurretAI : MonoBehaviour {
 
     private int maxLevel = 3;
     private int currentLevel;
+    private GameObject _gold;
+    public GameObject gold => _gold;
+
+    public Material activeMaterial;
+    public Material inactiveMaterial;
+
+    public bool set = false;
 
     //public TurretShoot_Base shotScript;
 
@@ -47,6 +55,10 @@ public class TurretAI : MonoBehaviour {
         currentLevel = 1;
 
         InvokeRepeating("CheckForTarget", 0, 0.5f);
+        _gold = GameObject.Find("Gold");
+        _gold.GetComponent<GoldManager>().TurretSpawn(gameObject, cost);
+
+        InvokeRepeating("ChackForTarget", 0, 0.5f);
         //shotScript = GetComponent<TurretShoot_Base>();
 
         if (transform.GetChild(0).GetComponent<Animator>())
@@ -58,14 +70,21 @@ public class TurretAI : MonoBehaviour {
     }
 	
 	void Update () {
-        if (currentTarget != null)
+        if (set)
         {
-            FollowTarget();
-
-            float currentTargetDist = Vector3.Distance(transform.position, currentTarget.transform.position);
-            if (currentTargetDist > attackDist)
+            if (currentTarget != null)
             {
-                currentTarget = null;
+                FollowTarget();
+
+                float currentTargetDist = Vector3.Distance(transform.position, currentTarget.transform.position);
+                if (currentTargetDist > attackDist)
+                {
+                    currentTarget = null;
+                }
+            }
+            else
+            {
+                IdleRotate();
             }
         }
         else
@@ -73,22 +92,32 @@ public class TurretAI : MonoBehaviour {
             IdleRotate();
         }
 
-        timer += Time.deltaTime;
-        if (timer >= shootCoolDown)
-        {
-            if (currentTarget != null)
+            timer += Time.deltaTime;
+            if (timer >= shootCoolDown)
             {
-                timer = 0;
-                
-                if (animator != null)
+                if (currentTarget != null)
                 {
-                    animator.SetTrigger("Fire");
-                    ShootTrigger();
+                    timer = 0;
+
+                    if (animator != null)
+                    {
+                        animator.SetTrigger("Fire");
+                        ShootTrigger();
+                    }
+                    else
+                    {
+                        ShootTrigger();
+                    }
                 }
-                else
-                {
-                    ShootTrigger();
-                }
+            }
+        }
+
+        else
+        {
+            if(_gold.GetComponent<GoldManager>().goldValue >= cost)
+            {
+                _gold.GetComponent<GoldManager>().TurretSpawn(gameObject, cost);
+                activeTurret();
             }
         }
 	}
@@ -252,6 +281,32 @@ public class TurretAI : MonoBehaviour {
         if (other.gameObject.tag == "Upgrade"){
             Upgrade();
             Destroy(other.gameObject);
+        }
+    }
+
+    public void OnDestroy()
+    {
+        if (set)
+        {
+            _gold.GetComponent<GoldManager>().TurretDelete(cost);
+        }
+    }
+
+    public void inactiveTurret()
+    {
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            if(r.name != "Quad")
+                r.material = inactiveMaterial;
+        }
+    }
+
+    public void activeTurret()
+    {
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            if (r.name != "Quad")
+                r.material = activeMaterial;
         }
     }
 }
