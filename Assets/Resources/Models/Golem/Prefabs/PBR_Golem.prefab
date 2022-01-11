@@ -133,7 +133,7 @@ MonoBehaviour:
   currentHealth: 0
   attackDamage: 10
   movementSpeed: 1
-  goldOnKill: 50
+  goldOnKill: 10
   animator: {fileID: 95380085654935804}
   healthBar: {fileID: 8532791874189604662}
 --- !u!143 &4982489947740786370

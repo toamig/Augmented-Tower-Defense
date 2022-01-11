@@ -22,9 +22,14 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public Slider healthBar;
 
+    private GameObject _gold;
+    public GameObject gold => _gold;
+
     // Start is called before the first frame update
     void Start()
     {
+        _gold = GameObject.Find("Gold");
+
         currentHealth = healthPoints;
 
         animator.SetFloat("MovSpeed", movementSpeed);
@@ -63,6 +68,7 @@ public class Enemy : MonoBehaviour
         if(currentHealth <= 0)
         {
             Destroy(gameObject);
+            _gold.GetComponent<GoldManager>().AddGold(goldOnKill);
         }
 
     }

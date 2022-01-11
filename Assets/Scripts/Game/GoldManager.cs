@@ -25,15 +25,6 @@ public class GoldManager : MonoBehaviour
 
     }
 
-    public void EnemyKilled(string enemy)
-    {
-        if(enemy == "enemy1")
-        {
-            goldValue += 10;
-            gold.text = goldValue.ToString();
-        }
-    }
-
     public void TurretSpawn(GameObject turret, float cost)
     {
         if (goldValue - cost < 0)
@@ -48,13 +39,13 @@ public class GoldManager : MonoBehaviour
         }
     }
 
-    public void TurretDelete(float cost)
+    public void AddGold(float cost)
     {
         goldValue += cost;
         gold.text = goldValue.ToString();
     }
 
-    public void TowerUpgrade(float cost)
+    public void RemoveGold(float cost)
     {
         goldValue -= cost;
         gold.text = goldValue.ToString();

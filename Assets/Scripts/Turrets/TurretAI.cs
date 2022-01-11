@@ -267,7 +267,7 @@ public class TurretAI : MonoBehaviour {
             vuMarkHandler.SaveVuMarkAugmentation(vuMarkBehaviour);
 
             currentLevel++;
-            
+            _gold.GetComponent<GoldManager>().RemoveGold(cost * currentLevel);
         }
     }
 
@@ -298,7 +298,7 @@ public class TurretAI : MonoBehaviour {
     {
         if (set)
         {
-            _gold.GetComponent<GoldManager>().TurretDelete(cost);
+            _gold.GetComponent<GoldManager>().AddGold(cost);
         }
     }
 
