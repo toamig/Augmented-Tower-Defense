@@ -1002,10 +1002,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretLevelUp
       objectReference: {fileID: 0}
+    - target: {fileID: 2948013130992375807, guid: 8cbd9e54ed6569c44b8eb52efdc8a7ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4518236036703985682, guid: 8cbd9e54ed6569c44b8eb52efdc8a7ff,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4518236036703985682, guid: 8cbd9e54ed6569c44b8eb52efdc8a7ff,
         type: 3}
@@ -1468,35 +1473,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278270156}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!21 &284347292
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'ATD_VuMarkMaterial
-
-    20332'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 25569e9b653e7723820baae72f3b8765, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &334951847
 GameObject:
   m_ObjectHideFlags: 0
@@ -3954,12 +3930,32 @@ MonoBehaviour:
   - enemyType: 0
     enemyObject: {fileID: 1067925524328404, guid: 6bbfea6690ef7724ba495c866081f855,
       type: 3}
+  - enemyType: 1
+    enemyObject: {fileID: 3155058319838657794, guid: 176299a76ecfc7544b22a66fae200ac7,
+      type: 3}
+  - enemyType: 2
+    enemyObject: {fileID: 1500939411536426, guid: 274c4c35ed05ea14c87492064b3cadfd,
+      type: 3}
   waves:
   - timeBetweenEnemies: 1
     enemies:
     - enemyType: 0
       count: 1
+    - enemyType: 1
+      count: 2
+    - enemyType: 2
+      count: 3
+  - timeBetweenEnemies: 1
+    enemies:
+    - enemyType: 1
+      count: 2
     - enemyType: 0
+      count: 1
+  - timeBetweenEnemies: 1
+    enemies:
+    - enemyType: 2
+      count: 3
+    - enemyType: 1
       count: 2
 --- !u!4 &1194598093
 Transform:
@@ -3975,6 +3971,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1296373188
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'ATD_VuMarkMaterial
+
+    61984'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 25569e9b653e7723820baae72f3b8765, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1329966717
 GameObject:
   m_ObjectHideFlags: 0
@@ -4353,7 +4378,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 284347292}
+  - {fileID: 1296373188}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5010,6 +5035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TurretLevelUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948013130992375807, guid: 8cbd9e54ed6569c44b8eb52efdc8a7ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4518236036703985682, guid: 8cbd9e54ed6569c44b8eb52efdc8a7ff,
         type: 3}
@@ -6013,6 +6043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TurretLevelUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948013130992375807, guid: 8cbd9e54ed6569c44b8eb52efdc8a7ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4518236036703985682, guid: 8cbd9e54ed6569c44b8eb52efdc8a7ff,
         type: 3}
@@ -7185,9 +7220,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: FattyCatapultG
       objectReference: {fileID: 0}
+    - target: {fileID: 1460030631903856, guid: a970ba0fc593c9347b1ca8a4e50197f1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4947991356735568, guid: a970ba0fc593c9347b1ca8a4e50197f1, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4947991356735568, guid: a970ba0fc593c9347b1ca8a4e50197f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7244,11 +7283,6 @@ PrefabInstance:
       propertyPath: activeMaterial
       value: 
       objectReference: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
-    - target: {fileID: 114097961573486468, guid: a970ba0fc593c9347b1ca8a4e50197f1,
-        type: 3}
-      propertyPath: defaultMaterial
-      value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 114097961573486468, guid: a970ba0fc593c9347b1ca8a4e50197f1,
         type: 3}
       propertyPath: inactiveMaterial
@@ -7353,6 +7387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FattyMissileG
       objectReference: {fileID: 0}
+    - target: {fileID: 1321377731327022, guid: 52101a1721a4f7b4fa06ca8b586ad5c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4268993561700370, guid: 52101a1721a4f7b4fa06ca8b586ad5c1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7414,11 +7452,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
     - target: {fileID: 114356927540799652, guid: 52101a1721a4f7b4fa06ca8b586ad5c1,
         type: 3}
-      propertyPath: defaultMaterial
-      value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 114356927540799652, guid: 52101a1721a4f7b4fa06ca8b586ad5c1,
-        type: 3}
       propertyPath: inactiveMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 5726faa88aa0dd94aa88ea194b9e4295, type: 2}
@@ -7453,11 +7486,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
     - target: {fileID: 2973354447683270169, guid: 7191a0df8b6695d449a0f18a361bc311,
         type: 3}
-      propertyPath: defaultMaterial
-      value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 2973354447683270169, guid: 7191a0df8b6695d449a0f18a361bc311,
-        type: 3}
       propertyPath: inactiveMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 5726faa88aa0dd94aa88ea194b9e4295, type: 2}
@@ -7475,6 +7503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FattyCannonG02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692410461269785519, guid: 7191a0df8b6695d449a0f18a361bc311,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9038296153510172081, guid: 7191a0df8b6695d449a0f18a361bc311,
         type: 3}
