@@ -58,7 +58,6 @@ public class TurretAI : MonoBehaviour {
         _gold = GameObject.Find("Gold");
         _gold.GetComponent<GoldManager>().TurretSpawn(gameObject, cost);
 
-        InvokeRepeating("ChackForTarget", 0, 0.5f);
         //shotScript = GetComponent<TurretShoot_Base>();
 
         if (transform.GetChild(0).GetComponent<Animator>())
@@ -87,27 +86,21 @@ public class TurretAI : MonoBehaviour {
                 IdleRotate();
             }
         }
-        else
+        timer += Time.deltaTime;
+        if (timer >= shootCoolDown)
         {
-            IdleRotate();
-        }
-
-            timer += Time.deltaTime;
-            if (timer >= shootCoolDown)
+            if (currentTarget != null)
             {
-                if (currentTarget != null)
-                {
-                    timer = 0;
+                timer = 0;
 
-                    if (animator != null)
-                    {
-                        animator.SetTrigger("Fire");
-                        ShootTrigger();
-                    }
-                    else
-                    {
-                        ShootTrigger();
-                    }
+                if (animator != null)
+                {
+                    animator.SetTrigger("Fire");
+                    ShootTrigger();
+                }
+                else
+                {
+                    ShootTrigger();
                 }
             }
         }
@@ -296,7 +289,7 @@ public class TurretAI : MonoBehaviour {
     {
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
-            if(r.name != "Quad")
+            if(r.name != "Quad" && r.name != "Eff_Spark00")
                 r.material = inactiveMaterial;
         }
     }
@@ -305,7 +298,7 @@ public class TurretAI : MonoBehaviour {
     {
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
-            if (r.name != "Quad")
+            if (r.name != "Quad" && r.name != "Eff_Spark00")
                 r.material = activeMaterial;
         }
     }
