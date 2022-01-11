@@ -46,6 +46,7 @@ public class TurretAI : MonoBehaviour {
 
     public Material activeMaterial;
     public Material inactiveMaterial;
+    public Material defaultMaterial;
 
     public bool set = false;
 
@@ -266,14 +267,30 @@ public class TurretAI : MonoBehaviour {
             vuMarkHandler.SaveVuMarkAugmentation(vuMarkBehaviour);
 
             currentLevel++;
+            
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Upgrade"){
-            Upgrade();
-            Destroy(other.gameObject);
+            if(cost * (currentLevel + 1) > _gold.GetComponent<GoldManager>().goldValue)
+            {
+                other.gameObject.GetComponent<Renderer>().material = inactiveMaterial;
+            }
+            else
+            {
+                Upgrade();
+                Destroy(other.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Upgrade")
+        {
+            other.gameObject.GetComponent<Renderer>().material = defaultMaterial;
         }
     }
 

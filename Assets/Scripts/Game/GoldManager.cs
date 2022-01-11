@@ -53,4 +53,10 @@ public class GoldManager : MonoBehaviour
         goldValue += cost;
         gold.text = goldValue.ToString();
     }
+
+    public void TowerUpgrade(float cost)
+    {
+        goldValue -= cost;
+        gold.text = goldValue.ToString();
+    }
 }
