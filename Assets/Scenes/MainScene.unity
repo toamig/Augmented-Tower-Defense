@@ -1702,6 +1702,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6eaf1e74f70ec84cb07f109047c95bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!21 &397160732
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'ATD_VuMarkMaterial
+
+    32922'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 25569e9b653e7723820baae72f3b8765, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &410452227
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,6 +2326,7 @@ GameObject:
   - component: {fileID: 661698190}
   - component: {fileID: 661698194}
   - component: {fileID: 661698193}
+  - component: {fileID: 661698195}
   m_Layer: 5
   m_Name: Gold
   m_TagString: Untagged
@@ -2424,6 +2454,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661698188}
   m_CullTransparentMesh: 1
+--- !u!114 &661698195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661698188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbc0fe3ed1b7984684b4ded9f0d2e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: {fileID: 861663528}
+  goldValue: 100
 --- !u!1 &717459241
 GameObject:
   m_ObjectHideFlags: 0
@@ -4309,7 +4353,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1804351127}
+  - {fileID: 397160732}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5817,35 +5861,6 @@ Transform:
   m_Father: {fileID: 410452228}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1804351127
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'ATD_VuMarkMaterial
-
-    21334'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 25569e9b653e7723820baae72f3b8765, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1806474023
 GameObject:
   m_ObjectHideFlags: 0
@@ -7216,9 +7231,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114097961573486468, guid: a970ba0fc593c9347b1ca8a4e50197f1,
         type: 3}
+      propertyPath: cost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114097961573486468, guid: a970ba0fc593c9347b1ca8a4e50197f1,
+        type: 3}
       propertyPath: turretHead
       value: 
       objectReference: {fileID: 1784122791}
+    - target: {fileID: 114097961573486468, guid: a970ba0fc593c9347b1ca8a4e50197f1,
+        type: 3}
+      propertyPath: activeMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
+    - target: {fileID: 114097961573486468, guid: a970ba0fc593c9347b1ca8a4e50197f1,
+        type: 3}
+      propertyPath: inactiveMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 5726faa88aa0dd94aa88ea194b9e4295, type: 2}
     - target: {fileID: 114097961573486468, guid: a970ba0fc593c9347b1ca8a4e50197f1,
         type: 3}
       propertyPath: levelUpParticles
@@ -7364,9 +7394,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114356927540799652, guid: 52101a1721a4f7b4fa06ca8b586ad5c1,
         type: 3}
+      propertyPath: cost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114356927540799652, guid: 52101a1721a4f7b4fa06ca8b586ad5c1,
+        type: 3}
       propertyPath: turretHead
       value: 
       objectReference: {fileID: 274351636}
+    - target: {fileID: 114356927540799652, guid: 52101a1721a4f7b4fa06ca8b586ad5c1,
+        type: 3}
+      propertyPath: activeMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
+    - target: {fileID: 114356927540799652, guid: 52101a1721a4f7b4fa06ca8b586ad5c1,
+        type: 3}
+      propertyPath: inactiveMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 5726faa88aa0dd94aa88ea194b9e4295, type: 2}
     - target: {fileID: 114356927540799652, guid: 52101a1721a4f7b4fa06ca8b586ad5c1,
         type: 3}
       propertyPath: levelUpParticles
@@ -7383,9 +7428,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2973354447683270169, guid: 7191a0df8b6695d449a0f18a361bc311,
         type: 3}
+      propertyPath: cost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2973354447683270169, guid: 7191a0df8b6695d449a0f18a361bc311,
+        type: 3}
       propertyPath: turretHead
       value: 
       objectReference: {fileID: 169831016}
+    - target: {fileID: 2973354447683270169, guid: 7191a0df8b6695d449a0f18a361bc311,
+        type: 3}
+      propertyPath: activeMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
+    - target: {fileID: 2973354447683270169, guid: 7191a0df8b6695d449a0f18a361bc311,
+        type: 3}
+      propertyPath: inactiveMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 5726faa88aa0dd94aa88ea194b9e4295, type: 2}
     - target: {fileID: 2973354447683270169, guid: 7191a0df8b6695d449a0f18a361bc311,
         type: 3}
       propertyPath: levelUpParticles

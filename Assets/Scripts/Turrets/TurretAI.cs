@@ -85,29 +85,29 @@ public class TurretAI : MonoBehaviour {
             {
                 IdleRotate();
             }
-        }
-        timer += Time.deltaTime;
-        if (timer >= shootCoolDown)
-        {
-            if (currentTarget != null)
-            {
-                timer = 0;
 
-                if (animator != null)
+            timer += Time.deltaTime;
+            if (timer >= shootCoolDown)
+            {
+                if (currentTarget != null)
                 {
-                    animator.SetTrigger("Fire");
-                    ShootTrigger();
-                }
-                else
-                {
-                    ShootTrigger();
+                    timer = 0;
+
+                    if (animator != null)
+                    {
+                        animator.SetTrigger("Fire");
+                        ShootTrigger();
+                    }
+                    else
+                    {
+                        ShootTrigger();
+                    }
                 }
             }
         }
-
         else
         {
-            if(_gold.GetComponent<GoldManager>().goldValue >= cost)
+            if (_gold.GetComponent<GoldManager>().goldValue >= cost)
             {
                 _gold.GetComponent<GoldManager>().TurretSpawn(gameObject, cost);
                 activeTurret();
