@@ -13,18 +13,21 @@ public class GameUI : MonoBehaviour
     public Button pauseGame;
     public Button startGame;
 
+    public GameObject mainMenu;
+
     private void Awake()
     {
         GameEvents.instance.OnStartGame += InitializeUI;
         GameEvents.instance.OnMapDetected += () => startGame.gameObject.SetActive(true);
         GameEvents.instance.OnWaveChange += UpdateWaves;
         GameEvents.instance.OnDamageTaken += UpdateHealthBar;
+        SetupButtons();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SetupButtons();
+        
     }
 
     // Update is called once per frame
@@ -46,13 +49,18 @@ public class GameUI : MonoBehaviour
 
     public void SetupButtons()
     {
-        //Start
+        // start
         startGame.onClick.AddListener(() => GameManager.instance.gameStarted = true);
         startGame.onClick.AddListener(() => GameEvents.instance.StartGame());
         startGame.onClick.AddListener(() => startGame.gameObject.SetActive(false));
 
-        //SpeedUp
+        // speed up
         speedUp.onValueChanged.AddListener((value) => SpeedUpGame(value));
+
+        // pause
+        pauseGame.onClick.AddListener(() => mainMenu.SetActive(true));
+        pauseGame.onClick.AddListener(() => GameManager.instance.timeScale = Time.timeScale);
+        pauseGame.onClick.AddListener(() => Time.timeScale = 0);
 
 
     }

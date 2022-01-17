@@ -56,4 +56,28 @@ public class GameEvents
         OnDefeat?.Invoke();
     }
 
+    public event Action OnDisableRanges;
+    public void DisableRanges()
+    {
+        OnDisableRanges?.Invoke();
+    }
+
+    public event Action OnEnableRanges;
+    public void EnableRanges()
+    {
+        OnEnableRanges?.Invoke();
+    }
+
+    public event Action OnDisableHealthBars;
+    public void DisableHealthBars()
+    {
+        OnDisableHealthBars?.Invoke();
+    }
+
+    public event Action OnEnableHealthBars;
+    public void EnableHealthBars()
+    {
+        OnEnableHealthBars?.Invoke();
+    }
+
 }
