@@ -13,18 +13,22 @@ public class GameUI : MonoBehaviour
     public Button pauseGame;
     public Button startGame;
 
+    public GameObject mainMenu;
+
     private void Awake()
     {
         GameEvents.instance.OnStartGame += InitializeUI;
-        GameEvents.instance.OnMapDetected += () => startGame.gameObject.SetActive(true);
+        GameEvents.instance.OnMapDetected += () => MapDetected();
+        GameEvents.instance.OnMapLost += () => MapLost();
         GameEvents.instance.OnWaveChange += UpdateWaves;
         GameEvents.instance.OnDamageTaken += UpdateHealthBar;
+        SetupButtons();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SetupButtons();
+        
     }
 
     // Update is called once per frame
@@ -46,13 +50,18 @@ public class GameUI : MonoBehaviour
 
     public void SetupButtons()
     {
-        //Start
+        // start
         startGame.onClick.AddListener(() => GameManager.instance.gameStarted = true);
         startGame.onClick.AddListener(() => GameEvents.instance.StartGame());
         startGame.onClick.AddListener(() => startGame.gameObject.SetActive(false));
 
-        //SpeedUp
+        // speed up
         speedUp.onValueChanged.AddListener((value) => SpeedUpGame(value));
+
+        // pause
+        pauseGame.onClick.AddListener(() => mainMenu.SetActive(true));
+        pauseGame.onClick.AddListener(() => GameManager.instance.timeScale = Time.timeScale);
+        pauseGame.onClick.AddListener(() => Time.timeScale = 0);
 
 
     }
@@ -68,6 +77,33 @@ public class GameUI : MonoBehaviour
     private void UpdateWaves()
     {
         waves.GetComponentInChildren<Text>().text = (GameManager.instance.waveManager.nextWave + 1).ToString("D2") + "/" + GameManager.instance.waveManager.waves.Length.ToString("D2");
+    }
+
+    void MapLost()
+    {
+        if (GameManager.instance.gameStarted)
+        {
+            mainMenu.SetActive(true);
+            if(Time.timeScale != 0)
+            {
+                GameManager.instance.timeScale = Time.timeScale;
+                Time.timeScale = 0;
+            }
+        }
+        else
+        {
+            startGame.gameObject.SetActive(false);
+        }
+        
+    }
+
+    void MapDetected()
+    {
+        if (!GameManager.instance.gameStarted)
+        {
+            startGame.gameObject.SetActive(true);
+        }
+        
     }
 
     private void SpeedUpGame(bool value)

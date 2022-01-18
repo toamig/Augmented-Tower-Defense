@@ -25,10 +25,21 @@ public class Enemy : MonoBehaviour
     private GameObject _gold;
     public GameObject gold => _gold;
 
+    public static bool showHealthBars = true;
+
+    private void Awake()
+    {
+        GameEvents.instance.OnDisableHealthBars += RemoveHealthBars;
+        GameEvents.instance.OnEnableHealthBars += AddHealthBars;
+        GameEvents.instance.OnMapDetected += FindWayPoints;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         _gold = GameObject.Find("Gold");
+
+        healthBar.gameObject.SetActive(showHealthBars);
 
         currentHealth = healthPoints;
 
@@ -36,14 +47,7 @@ public class Enemy : MonoBehaviour
 
         controler = GetComponent<CharacterController>();
 
-        GameObject wayPoints = GameObject.Find("WayPoints");
-
-        points = new Transform[wayPoints.transform.childCount];
-
-        for (int i = 0; i < points.Length; i++)
-        {
-            points[i] = wayPoints.transform.GetChild(i);
-        }
+        FindWayPoints();
 
         wayPointIndex = 0;
         target = points[wayPointIndex];
@@ -90,8 +94,6 @@ public class Enemy : MonoBehaviour
         Quaternion currentRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.LookRotation(lookAtPos - transform.position);
         transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactor * Time.deltaTime);
-
-
     }
 
     private void GetNextWayPoint()
@@ -123,6 +125,38 @@ public class Enemy : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    void FindWayPoints()
+    {
+        GameObject wayPoints = GameObject.Find("WayPoints");
+
+        points = new Transform[wayPoints.transform.childCount];
+
+        for (int i = 0; i < points.Length; i++)
+        {
+            points[i] = wayPoints.transform.GetChild(i);
+        }
+
+        target = points[wayPointIndex];
+    }
+
+    void RemoveHealthBars()
+    {
+        healthBar.gameObject.SetActive(false);
+        showHealthBars = false;
+    }
+
+    void AddHealthBars()
+    {
+        healthBar.gameObject.SetActive(true);
+        showHealthBars = true;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.instance.OnDisableHealthBars -= RemoveHealthBars;
+        GameEvents.instance.OnEnableHealthBars -= AddHealthBars;
     }
 
 }

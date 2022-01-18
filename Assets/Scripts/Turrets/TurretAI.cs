@@ -48,12 +48,24 @@ public class TurretAI : MonoBehaviour {
     public Material inactiveMaterial;
     public Material defaultMaterial;
 
+    public static bool showRange = true;
+
+    public GameObject rangeIndicator;
+
     public bool set = false;
 
     //public TurretShoot_Base shotScript;
 
+    private void Awake()
+    {
+        GameEvents.instance.OnDisableRanges += RemoveRanges;
+        GameEvents.instance.OnEnableRanges += AddRanges;
+    }
+
     void Start () {
         currentLevel = 1;
+
+        rangeIndicator.SetActive(showRange);
 
         InvokeRepeating("CheckForTarget", 0, 0.5f);
         _gold = GameObject.Find("Gold");
@@ -284,6 +296,10 @@ public class TurretAI : MonoBehaviour {
                 Destroy(other.gameObject);
             }
         }
+        else if(other.gameObject.layer == 6)
+        {
+            inactiveTurret();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -291,6 +307,10 @@ public class TurretAI : MonoBehaviour {
         if (other.gameObject.tag == "Upgrade")
         {
             other.gameObject.GetComponent<Renderer>().material = defaultMaterial;
+        }
+        else if (other.gameObject.layer == 6)
+        {
+            activeTurret();
         }
     }
 
@@ -300,10 +320,14 @@ public class TurretAI : MonoBehaviour {
         {
             _gold.GetComponent<GoldManager>().AddGold(cost);
         }
+
+        GameEvents.instance.OnDisableRanges -= RemoveRanges;
+        GameEvents.instance.OnEnableRanges -= AddRanges;
     }
 
     public void inactiveTurret()
     {
+        set = false;
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
             if(r.name != "Quad" && r.name != "Eff_Spark00")
@@ -313,10 +337,25 @@ public class TurretAI : MonoBehaviour {
 
     public void activeTurret()
     {
+        set = true;
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
             if (r.name != "Quad" && r.name != "Eff_Spark00")
                 r.material = activeMaterial;
         }
     }
+
+    void RemoveRanges()
+    {
+        rangeIndicator.gameObject.SetActive(false);
+        showRange = false;
+    }
+
+    void AddRanges()
+    {
+        rangeIndicator.gameObject.SetActive(true);
+        showRange = true;
+    }
+
+
 }
