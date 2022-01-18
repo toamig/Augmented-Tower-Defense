@@ -26,6 +26,12 @@ public class GameEvents
         OnMapDetected?.Invoke();
     }
 
+    public event Action OnMapLost;
+    public void MapLost()
+    {
+        OnMapLost?.Invoke();
+    }
+
     public event Action OnWaveChange;
     public void WaveChange()
     {
@@ -54,6 +60,30 @@ public class GameEvents
     public void Defeat()
     {
         OnDefeat?.Invoke();
+    }
+
+    public event Action OnDisableRanges;
+    public void DisableRanges()
+    {
+        OnDisableRanges?.Invoke();
+    }
+
+    public event Action OnEnableRanges;
+    public void EnableRanges()
+    {
+        OnEnableRanges?.Invoke();
+    }
+
+    public event Action OnDisableHealthBars;
+    public void DisableHealthBars()
+    {
+        OnDisableHealthBars?.Invoke();
+    }
+
+    public event Action OnEnableHealthBars;
+    public void EnableHealthBars()
+    {
+        OnEnableHealthBars?.Invoke();
     }
 
 }

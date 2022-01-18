@@ -4775,7 +4775,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4832,6 +4831,7 @@ GameObject:
   - component: {fileID: 4323702507621681146}
   - component: {fileID: 7305346383152731642}
   - component: {fileID: 4233112722773649261}
+  - component: {fileID: 3602866017761784863}
   m_Layer: 0
   m_Name: CannonG_Barrel02
   m_TagString: Untagged
@@ -4903,6 +4903,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3602866017761784863
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483666653184858499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 565b27b999c1f6f43aee1750c78d8150, type: 3}
 --- !u!1 &934595017783177815
 GameObject:
   m_ObjectHideFlags: 0
@@ -4934,6 +4948,87 @@ Transform:
   m_Father: {fileID: 4323702507621681146}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4348138358081465506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8491109768012976307}
+  - component: {fileID: 2203177517912603147}
+  - component: {fileID: 5945911913128336202}
+  m_Layer: 0
+  m_Name: Quad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8491109768012976307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348138358081465506}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.125, z: 0}
+  m_LocalScale: {x: 18.75, y: 18.75, z: 1.2499999}
+  m_Children: []
+  m_Father: {fileID: 9038296153510172081}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &2203177517912603147
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348138358081465506}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5945911913128336202
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348138358081465506}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8b5f1b7a96855f34fb8721f8e782a629, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6038863149905571999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4977,6 +5072,7 @@ GameObject:
   - component: {fileID: 5030314508144110218}
   - component: {fileID: 7874208689337674513}
   - component: {fileID: 6383764483176310363}
+  - component: {fileID: 3602866017365021064}
   m_Layer: 0
   m_Name: CannonG_Guard00
   m_TagString: Untagged
@@ -5047,6 +5143,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3602866017365021064
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188440737466714445}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: f019c9619c8574c42a0973068e562948, type: 3}
 --- !u!1 &6205941073253321719
 GameObject:
   m_ObjectHideFlags: 0
@@ -5058,6 +5168,7 @@ GameObject:
   - component: {fileID: 8451240413621710573}
   - component: {fileID: 295652211688126361}
   - component: {fileID: 968984141711752500}
+  - component: {fileID: 3602866016136931110}
   m_Layer: 0
   m_Name: CannonG_Plate00
   m_TagString: Untagged
@@ -5128,6 +5239,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3602866016136931110
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205941073253321719}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 0c79d9d4997a7ea42ac2c62162d84cac, type: 3}
 --- !u!1 &6692410461269785519
 GameObject:
   m_ObjectHideFlags: 0
@@ -5138,6 +5263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9038296153510172081}
   - component: {fileID: 2973354447683270169}
+  - component: {fileID: 3602866016802254905}
   m_Layer: 0
   m_Name: FattyCannonG02
   m_TagString: Untagged
@@ -5158,6 +5284,7 @@ Transform:
   m_Children:
   - {fileID: 1436777173754660003}
   - {fileID: 8451240413621710573}
+  - {fileID: 8491109768012976307}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5174,11 +5301,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
-  turreyHead: {fileID: 1436777173754660003}
+  turretHead: {fileID: 1436777173754660003}
   attackDist: 10
   attackDamage: 15
   shootCoolDown: 0.5
   loockSpeed: 100
+  cost: 50
   randomRot: {x: 0, y: 0, z: 0}
   animator: {fileID: 0}
   turretType: 1
@@ -5186,3 +5314,25 @@ MonoBehaviour:
   muzzleSub: {fileID: 0}
   muzzleEff: {fileID: 1868602337266200, guid: 6d074a749488789479e539251fdf184e, type: 3}
   bullet: {fileID: 1230967522142342, guid: eb167afc8ab53774898a71ad9c87e1e8, type: 3}
+  levelUpParticles: {fileID: 0}
+  activeMaterial: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 5726faa88aa0dd94aa88ea194b9e4295, type: 2}
+  defaultMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  rangeIndicator: {fileID: 0}
+  set: 0
+--- !u!54 &3602866016802254905
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6692410461269785519}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3

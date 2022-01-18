@@ -4832,6 +4832,7 @@ GameObject:
   - component: {fileID: 4822440010067964}
   - component: {fileID: 33996731145891294}
   - component: {fileID: 23344717968301126}
+  - component: {fileID: 790466792}
   m_Layer: 0
   m_Name: MissileG_Barrel02
   m_TagString: Untagged
@@ -4903,6 +4904,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &790466792
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141986769099326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5d764ddd449a6144da08506078f9f762, type: 3}
 --- !u!1 &1180409343879766
 GameObject:
   m_ObjectHideFlags: 0
@@ -4914,6 +4929,7 @@ GameObject:
   - component: {fileID: 4395928933941270}
   - component: {fileID: 33577633121023816}
   - component: {fileID: 23234858027148570}
+  - component: {fileID: 12025897}
   m_Layer: 0
   m_Name: MissileG_Plate00
   m_TagString: Untagged
@@ -4984,6 +5000,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &12025897
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180409343879766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 72af3d443504a604b9f4f2cb9efd89ad, type: 3}
 --- !u!1 &1321377731327022
 GameObject:
   m_ObjectHideFlags: 0
@@ -4994,6 +5024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4268993561700370}
   - component: {fileID: 114356927540799652}
+  - component: {fileID: 1615814177}
   m_Layer: 0
   m_Name: FattyMissileG
   m_TagString: Untagged
@@ -5031,11 +5062,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
-  turreyHead: {fileID: 4894621298927726}
+  turretHead: {fileID: 4894621298927726}
   attackDist: 7.5
   attackDamage: 20
   shootCoolDown: 0.5
   loockSpeed: 100
+  cost: 50
   randomRot: {x: 0, y: 0, z: 0}
   animator: {fileID: 0}
   turretType: 2
@@ -5043,6 +5075,28 @@ MonoBehaviour:
   muzzleSub: {fileID: 4535923597716192}
   muzzleEff: {fileID: 1497772684437746, guid: bd75ef4ae186f454a90b2de71bed2854, type: 3}
   bullet: {fileID: 1773485284122676, guid: 9e0d59e1858a95d4aafcfc9ef7e94671, type: 3}
+  levelUpParticles: {fileID: 0}
+  activeMaterial: {fileID: 2100000, guid: df80e43d0e98e934e90be1493ab2cb20, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 5726faa88aa0dd94aa88ea194b9e4295, type: 2}
+  defaultMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  rangeIndicator: {fileID: 0}
+  set: 0
+--- !u!54 &1615814177
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321377731327022}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1366799779227582
 GameObject:
   m_ObjectHideFlags: 0
@@ -5148,6 +5202,7 @@ GameObject:
   - component: {fileID: 4243388043332222}
   - component: {fileID: 33814721527033306}
   - component: {fileID: 23303791835646378}
+  - component: {fileID: 171151662}
   m_Layer: 0
   m_Name: MissileG_Radar00
   m_TagString: Untagged
@@ -5218,6 +5273,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &171151662
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420240884926948}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 2e8ffc8142a313848a7eae3386928a38, type: 3}
 --- !u!1 &1492975844606946
 GameObject:
   m_ObjectHideFlags: 0
@@ -5264,6 +5333,7 @@ GameObject:
   - component: {fileID: 4632521427774942}
   - component: {fileID: 33209587740526146}
   - component: {fileID: 23466638906139088}
+  - component: {fileID: 996775587}
   m_Layer: 0
   m_Name: MissileG_Barrel02
   m_TagString: Untagged
@@ -5335,6 +5405,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &996775587
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494698686347282}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5d764ddd449a6144da08506078f9f762, type: 3}
 --- !u!1 &1509359166381204
 GameObject:
   m_ObjectHideFlags: 0
@@ -5346,6 +5430,7 @@ GameObject:
   - component: {fileID: 4152411494966982}
   - component: {fileID: 33122768791970178}
   - component: {fileID: 23483558920925856}
+  - component: {fileID: 1962506526}
   m_Layer: 0
   m_Name: MissileG_Stand00
   m_TagString: Untagged
@@ -5416,6 +5501,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1962506526
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509359166381204}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b5d7e9c496fbc4348800de7310f2ef68, type: 3}
 --- !u!1 &1675593240195116
 GameObject:
   m_ObjectHideFlags: 0
@@ -5427,6 +5526,7 @@ GameObject:
   - component: {fileID: 4114427046038970}
   - component: {fileID: 33123251968205758}
   - component: {fileID: 23761408028391428}
+  - component: {fileID: 1723377348}
   m_Layer: 0
   m_Name: MissileG_Cap00
   m_TagString: Untagged
@@ -5497,6 +5597,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1723377348
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675593240195116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b034fedba8fdb2f45b070e2985755f90, type: 3}
 --- !u!1 &1688807191002478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5508,6 +5622,7 @@ GameObject:
   - component: {fileID: 4812241655112588}
   - component: {fileID: 33071836118768314}
   - component: {fileID: 23902084618042502}
+  - component: {fileID: 623655630}
   m_Layer: 0
   m_Name: MissileG_Cap00 (1)
   m_TagString: Untagged
@@ -5578,6 +5693,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &623655630
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688807191002478}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b034fedba8fdb2f45b070e2985755f90, type: 3}
 --- !u!1 &1938477470871220
 GameObject:
   m_ObjectHideFlags: 0

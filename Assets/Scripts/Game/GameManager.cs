@@ -7,11 +7,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _difficulty;
     public int difficulty { get => _difficulty; set => _difficulty = value; }
 
+    private float _timeScale;
+    public float timeScale
+    {
+        get => _timeScale;
+        set => _timeScale = value;
+    }
 
     // Game manager singleton initialization
     private static GameManager _instance;
     public static GameManager instance => _instance;
-
 
     private WaveManager _waveManager;
     public WaveManager waveManager => _waveManager;
