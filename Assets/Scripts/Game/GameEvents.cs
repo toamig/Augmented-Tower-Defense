@@ -26,6 +26,12 @@ public class GameEvents
         OnMapDetected?.Invoke();
     }
 
+    public event Action OnMapLost;
+    public void MapLost()
+    {
+        OnMapLost?.Invoke();
+    }
+
     public event Action OnWaveChange;
     public void WaveChange()
     {

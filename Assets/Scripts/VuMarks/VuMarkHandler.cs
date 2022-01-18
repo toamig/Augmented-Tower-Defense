@@ -134,14 +134,14 @@ public class VuMarkHandler : MonoBehaviour
             GameEvents.instance.MapDetected();
         }
 
-        if (GetVuMarkId(vuMarkBehaviour) == "T1" || GetVuMarkId(vuMarkBehaviour) == "T2" || GetVuMarkId(vuMarkBehaviour) == "T3")
-        {
-            vuMarkBehaviour.gameObject.GetComponent<VuMarkObserverEventHandler>().StatusFilter = DefaultObserverEventHandler.TrackingStatusFilter.Tracked_ExtendedTracked;
-        }
-        else
-        {
+        //if (GetVuMarkId(vuMarkBehaviour) == "T1" || GetVuMarkId(vuMarkBehaviour) == "T2" || GetVuMarkId(vuMarkBehaviour) == "T3")
+        //{
+        //    vuMarkBehaviour.gameObject.GetComponent<VuMarkObserverEventHandler>().StatusFilter = DefaultObserverEventHandler.TrackingStatusFilter.Tracked_ExtendedTracked;
+        //}
+        //else
+        //{
             vuMarkBehaviour.gameObject.GetComponent<VuMarkObserverEventHandler>().StatusFilter = DefaultObserverEventHandler.TrackingStatusFilter.Tracked;
-        }
+        //}
     }
 
     void OnVuMarkLost(VuMarkBehaviour vuMarkBehaviour)
@@ -159,6 +159,11 @@ public class VuMarkHandler : MonoBehaviour
         
         if (vuMarkBehaviour == mCurrentVuMark && mNearestVuMarkScreenPanel != null)
             mNearestVuMarkScreenPanel.ResetShowTrigger();
+
+        if (GetVuMarkId(vuMarkBehaviour) == "End")
+        {
+            GameEvents.instance.MapLost();
+        }
     }
 
     string GetVuMarkDataType(VuMarkBehaviour vuMarkTarget)

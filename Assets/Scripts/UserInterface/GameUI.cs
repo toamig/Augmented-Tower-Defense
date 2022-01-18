@@ -18,7 +18,8 @@ public class GameUI : MonoBehaviour
     private void Awake()
     {
         GameEvents.instance.OnStartGame += InitializeUI;
-        GameEvents.instance.OnMapDetected += () => startGame.gameObject.SetActive(true);
+        GameEvents.instance.OnMapDetected += () => MapDetected();
+        GameEvents.instance.OnMapLost += () => MapLost();
         GameEvents.instance.OnWaveChange += UpdateWaves;
         GameEvents.instance.OnDamageTaken += UpdateHealthBar;
         SetupButtons();
@@ -76,6 +77,33 @@ public class GameUI : MonoBehaviour
     private void UpdateWaves()
     {
         waves.GetComponentInChildren<Text>().text = (GameManager.instance.waveManager.nextWave + 1).ToString("D2") + "/" + GameManager.instance.waveManager.waves.Length.ToString("D2");
+    }
+
+    void MapLost()
+    {
+        if (GameManager.instance.gameStarted)
+        {
+            mainMenu.SetActive(true);
+            if(Time.timeScale != 0)
+            {
+                GameManager.instance.timeScale = Time.timeScale;
+                Time.timeScale = 0;
+            }
+        }
+        else
+        {
+            startGame.gameObject.SetActive(false);
+        }
+        
+    }
+
+    void MapDetected()
+    {
+        if (!GameManager.instance.gameStarted)
+        {
+            startGame.gameObject.SetActive(true);
+        }
+        
     }
 
     private void SpeedUpGame(bool value)
