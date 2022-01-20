@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    public enum SpawnState { SPAWNING, WAITING, COUNTING };
+    public enum SpawnState { SPAWNING, WAITING, COUNTING, FINISHED };
 
     public float timeBetweenWaves;
 
@@ -43,6 +43,11 @@ public class WaveManager : MonoBehaviour
     {
         if (GameManager.instance.gameStarted)
         {
+            if (state == SpawnState.FINISHED)
+            {
+                return;
+            }
+
             if (state == SpawnState.WAITING)
             {
                 if (!EnemyIsAlive())
@@ -74,16 +79,14 @@ public class WaveManager : MonoBehaviour
 
     public void WaveCompleted()
     {
-        state = SpawnState.COUNTING;
-        waveCountDown = timeBetweenWaves;
-
         if(nextWave + 1 > waves.Length - 1)
         {
-            nextWave = 0;
-            Time.timeScale = 0;
+            state = SpawnState.FINISHED;
         }
         else
         {
+            state = SpawnState.COUNTING;
+            waveCountDown = timeBetweenWaves;
             nextWave++;
         }
     }
