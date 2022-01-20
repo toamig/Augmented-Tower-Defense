@@ -102,7 +102,7 @@ public class WaveManager : MonoBehaviour
             }
         }
 
-        state = SpawnState.WAITING;
+        WaveCompleted();
         yield break;
                
     }
@@ -116,8 +116,7 @@ public class WaveManager : MonoBehaviour
             if(enemyObject.enemyType == enemyType)
             {
                 GameObject test = Instantiate(enemyObject.enemyObject, spawnTransform.position, spawnTransform.rotation);
-                test.transform.LookAt(GameManager.instance.castle.transform);
-                //test.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 5));
+                test.transform.LookAt(GameManager.instance.portal.transform.forward);
             }
         }
     }
