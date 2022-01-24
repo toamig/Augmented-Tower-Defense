@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700b4d6d417c01f49854042950ba219b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
+  healthPoints: 200
   currentHealth: 0
-  attackDamage: 10
+  attackDamage: 5
   movementSpeed: 1
   goldOnKill: 10
   animator: {fileID: 95380085654935804}
