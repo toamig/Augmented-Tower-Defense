@@ -17,6 +17,7 @@ public class GoldManager : MonoBehaviour
     void Awake()
     {
         gold.text = goldValue.ToString();
+        GameEvents.instance.OnStartGame += PassiveGold;
     }
 
     // Update is called once per frame
@@ -49,5 +50,15 @@ public class GoldManager : MonoBehaviour
     {
         goldValue -= cost;
         gold.text = goldValue.ToString();
+    }
+
+    public void PassiveGold()
+    {
+        InvokeRepeating("AddPassiveGold", 2.0f, 2.0f);
+    }
+
+    private void AddPassiveGold()
+    {
+        AddGold(2);
     }
 }
