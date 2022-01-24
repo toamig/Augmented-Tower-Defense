@@ -47,8 +47,6 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        gameStarted = false;
-
         GameEvents.instance.OnMapDetected += AssignStructures;
 
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
@@ -69,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
         if (arg0.name == "MainScene")
         {
+            gameStarted = false;
             InitializeManagers();
         }
     }

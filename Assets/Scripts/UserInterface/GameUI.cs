@@ -12,6 +12,7 @@ public class GameUI : MonoBehaviour
     public Toggle speedUp;
     public Button pauseGame;
     public Button startGame;
+    public FinalScreen finalScreen;
 
     public GameObject mainMenu;
 
@@ -22,6 +23,8 @@ public class GameUI : MonoBehaviour
         GameEvents.instance.OnMapLost += () => MapLost();
         GameEvents.instance.OnWaveChange += UpdateWaves;
         GameEvents.instance.OnDamageTaken += UpdateHealthBar;
+        GameEvents.instance.OnVictory += Victory;
+        GameEvents.instance.OnDefeat += Defeat;
         SetupButtons();
     }
 
@@ -118,5 +121,16 @@ public class GameUI : MonoBehaviour
         }
     }
 
+    void Victory()
+    {
+        finalScreen.text.text = "Victory";
+        finalScreen.gameObject.SetActive(true);
+    }
+
+    void Defeat()
+    {
+        finalScreen.text.text = "Defeat";
+        finalScreen.gameObject.SetActive(true);
+    }
 
 }

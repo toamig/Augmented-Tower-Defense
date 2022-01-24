@@ -21,6 +21,7 @@ public class TurretAI : MonoBehaviour {
     private float timer;
     public float loockSpeed;
     public float cost;
+    public float currentValue;
 
     //public Quaternion randomRot;
     public Vector3 randomRot;
@@ -63,6 +64,8 @@ public class TurretAI : MonoBehaviour {
     }
 
     void Start () {
+        currentValue = cost;
+
         currentLevel = 1;
 
         rangeIndicator.SetActive(showRange);
@@ -280,6 +283,7 @@ public class TurretAI : MonoBehaviour {
 
             currentLevel++;
             _gold.GetComponent<GoldManager>().RemoveGold(cost * currentLevel);
+            currentValue += (cost * currentLevel);
         }
     }
 
@@ -318,7 +322,7 @@ public class TurretAI : MonoBehaviour {
     {
         if (set)
         {
-            _gold.GetComponent<GoldManager>().AddGold(cost);
+            _gold.GetComponent<GoldManager>().AddGold(currentValue);
         }
 
         GameEvents.instance.OnDisableRanges -= RemoveRanges;

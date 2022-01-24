@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     private GameObject _gold;
     public GameObject gold => _gold;
 
+    private bool walking;
+
     public static bool showHealthBars = true;
 
     private void Awake()
@@ -32,11 +34,14 @@ public class Enemy : MonoBehaviour
         GameEvents.instance.OnDisableHealthBars += RemoveHealthBars;
         GameEvents.instance.OnEnableHealthBars += AddHealthBars;
         GameEvents.instance.OnMapDetected += FindWayPoints;
+        GameEvents.instance.OnDefeat += Defeat;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        walking = true;
+
         _gold = GameObject.Find("Gold");
 
         healthBar.gameObject.SetActive(showHealthBars);
@@ -61,10 +66,13 @@ public class Enemy : MonoBehaviour
             HandleRotation();
         }
 
-        Vector3 dir = target.position - transform.position;
-        controler.SimpleMove(dir.normalized * movementSpeed);
+        if (walking)
+        {
+            Vector3 dir = target.position - transform.position;
+            controler.SimpleMove(dir.normalized * movementSpeed);
+        }
 
-        if (Vector3.Distance(transform.position, target.position) < 0.2f)
+        if (Vector3.Distance(transform.position, target.position) < 0.5f)
         {
             GetNextWayPoint();
         }
@@ -121,9 +129,10 @@ public class Enemy : MonoBehaviour
             Castle castle = GameManager.instance.castle.GetComponent<Castle>();
 
             castle.healthPoints -= attackDamage;
-            GameEvents.instance.DamageTaken();
 
             Destroy(gameObject);
+
+            GameEvents.instance.DamageTaken();
         }
     }
 
@@ -139,6 +148,12 @@ public class Enemy : MonoBehaviour
         }
 
         target = points[wayPointIndex];
+    }
+
+    void Defeat()
+    {
+        animator.SetBool("Victory", true);
+        walking = false;
     }
 
     void RemoveHealthBars()
@@ -157,6 +172,8 @@ public class Enemy : MonoBehaviour
     {
         GameEvents.instance.OnDisableHealthBars -= RemoveHealthBars;
         GameEvents.instance.OnEnableHealthBars -= AddHealthBars;
+        GameEvents.instance.OnMapDetected -= FindWayPoints;
+        GameEvents.instance.OnDefeat -= Defeat;
     }
 
 }
