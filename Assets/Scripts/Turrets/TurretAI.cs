@@ -304,7 +304,11 @@ public class TurretAI : MonoBehaviour {
         }
         else if(other.gameObject.layer == 6)
         {
-            inactiveTurret();
+            foreach (Renderer r in GetComponentsInChildren<Renderer>())
+            {
+                if (r.name != "Quad" && r.name != "Eff_Spark00")
+                    r.material = inactiveMaterial;
+            }
         }
     }
 
