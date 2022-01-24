@@ -49,6 +49,12 @@ public class OptionsMenu : MonoBehaviour
         // back
         back.onClick.AddListener(() => mainMenu.SetActive(true));
         back.onClick.AddListener(() => gameObject.SetActive(false));
+
+        // sfx
+        sfx.onValueChanged.AddListener((value) => GameEvents.instance.VFXVolumeChanged(value));
+
+        // ambient sound
+        ambientSound.onValueChanged.AddListener((value) => GameEvents.instance.BackgroundVolumeChanged(value));
     }
 
     void DisableRanges(bool value)

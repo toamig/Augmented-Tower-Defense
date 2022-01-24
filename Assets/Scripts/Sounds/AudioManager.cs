@@ -8,6 +8,9 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        GameEvents.instance.OnBackgroundVolumeChanged += (value) => BackgroundVolumeChanged(value);
+        GameEvents.instance.OnVFXVolumeChanged += (value) => VFXVolumeChanged(value);
+
         DontDestroyOnLoad(gameObject);
         if (instance == null)
             instance = this;
@@ -17,7 +20,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-     foreach( SoundFile s in sounds)
+        foreach( SoundFile s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -26,6 +29,7 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
         }
     }
+
     private void Start()
     {
         Play("Theme");
@@ -34,12 +38,35 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     public void Play(string name)
     {
-       SoundFile s =  Array.Find(sounds, sound => sound.name == name);
-       if (s== null)
+        SoundFile s =  Array.Find(sounds, sound => sound.name == name);
+        if (s== null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
         s.source.Play();
+    }
+
+    void VFXVolumeChanged(float volume)
+    {
+        foreach(SoundFile sf in sounds)
+        {
+            if(sf.name != "Theme")
+            {
+                sf.source.volume = volume;
+            }
+        }
+    }
+
+    void BackgroundVolumeChanged(float volume)
+    {
+        SoundFile theme = FindSound("Theme");
+
+        theme.source.volume = volume;
+    }
+
+    public SoundFile FindSound(string name)
+    {
+        return Array.Find(sounds, sound => sound.name == name);
     }
 }

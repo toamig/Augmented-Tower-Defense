@@ -86,4 +86,15 @@ public class GameEvents
         OnEnableHealthBars?.Invoke();
     }
 
+    public event Action<float> OnVFXVolumeChanged;
+    public void VFXVolumeChanged(float volume)
+    {
+        OnVFXVolumeChanged?.Invoke(volume);
+    }
+
+    public event Action<float> OnBackgroundVolumeChanged;
+    public void BackgroundVolumeChanged(float volume)
+    {
+        OnBackgroundVolumeChanged?.Invoke(volume);
+    }
 }
