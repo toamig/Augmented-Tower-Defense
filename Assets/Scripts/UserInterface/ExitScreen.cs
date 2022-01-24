@@ -30,7 +30,8 @@ public class ExitScreen : MonoBehaviour
     void SetupButtons()
     {
         // yes
-        Application.Quit();
+        yes.onClick.AddListener(() => Application.Quit());
+        
 
         // no
         no.onClick.AddListener(() => mainMenu.SetActive(true));

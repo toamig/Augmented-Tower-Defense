@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -49,11 +50,9 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        gameStarted = false;
-
-        InitializeManagers();
-
         GameEvents.instance.OnMapDetected += AssignStructures;
+
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
 
     private void Update()
@@ -67,19 +66,14 @@ public class GameManager : MonoBehaviour
         _portal = GameObject.Find("portal");
     }
 
-    //private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
-    //{
-    //    if (arg0.name == "Menu")
-    //    {
-    //        GameManager.instance.audioManager.Play(SoundType.MENU);
-    //    }
-
-    //    if (arg0.name == "MainScene")
-    //    {
-    //        _inGame = true;
-    //        InitializeManagers();
-    //    }
-    //}
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if (arg0.name == "MainScene")
+        {
+            gameStarted = false;
+            InitializeManagers();
+        }
+    }
 
     public void InitializeManagers()
     {

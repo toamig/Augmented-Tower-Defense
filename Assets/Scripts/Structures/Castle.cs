@@ -8,6 +8,11 @@ public class Castle : MonoBehaviour
 
     public float maxHealthPoints;
 
+    private void Awake()
+    {
+        GameEvents.instance.OnDamageTaken += CheckDefeat;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +22,15 @@ public class Castle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    void CheckDefeat()
+    {
         if (healthPoints <= 0)
         {
-
             GameManager.instance.audioManager.Play("Defeat");
-            Debug.Log("GGWP");
+            GameEvents.instance.Defeat();
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    public enum SpawnState { SPAWNING, WAITING, COUNTING };
+    public enum SpawnState { SPAWNING, WAITING, COUNTING, FINISHED };
 
     public float timeBetweenWaves;
 
@@ -43,6 +43,7 @@ public class WaveManager : MonoBehaviour
     {
         if (GameManager.instance.gameStarted)
         {
+
             if (state == SpawnState.WAITING)
             {
                 if (!EnemyIsAlive())
@@ -56,7 +57,7 @@ public class WaveManager : MonoBehaviour
                 }
             }
 
-            if (waveCountDown <= 0)
+            if (state != SpawnState.FINISHED && waveCountDown <= 0)
             {
                 GameEvents.instance.WaveChange();
 
@@ -75,16 +76,15 @@ public class WaveManager : MonoBehaviour
 
     public void WaveCompleted()
     {
-        state = SpawnState.COUNTING;
-        waveCountDown = timeBetweenWaves;
-
         if(nextWave + 1 > waves.Length - 1)
         {
-            nextWave = 0;
-            Time.timeScale = 0;
+            state = SpawnState.FINISHED;
+            GameEvents.instance.Victory();
         }
         else
         {
+            state = SpawnState.COUNTING;
+            waveCountDown = timeBetweenWaves;
             nextWave++;
         }
     }
@@ -97,7 +97,6 @@ public class WaveManager : MonoBehaviour
         {
             for (int j = 0; j < wave.enemies[i].count; j++)
             {
-                Debug.Log("Spawning");
                 SpawnEnemy(wave.enemies[i].enemyType);
                 yield return new WaitForSeconds(wave.timeBetweenEnemies);
             }
@@ -117,8 +116,7 @@ public class WaveManager : MonoBehaviour
             if(enemyObject.enemyType == enemyType)
             {
                 GameObject test = Instantiate(enemyObject.enemyObject, spawnTransform.position, spawnTransform.rotation);
-                test.transform.LookAt(GameManager.instance.castle.transform);
-                //test.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 5));
+                test.transform.LookAt(GameManager.instance.portal.transform.forward);
             }
         }
     }
