@@ -21,6 +21,7 @@ public class TurretAI : MonoBehaviour {
     private float timer;
     public float loockSpeed;
     public float cost;
+    public float currentValue;
 
     //public Quaternion randomRot;
     public Vector3 randomRot;
@@ -63,6 +64,8 @@ public class TurretAI : MonoBehaviour {
     }
 
     void Start () {
+        currentValue = cost;
+
         currentLevel = 1;
 
         rangeIndicator.SetActive(showRange);
@@ -165,7 +168,6 @@ public class TurretAI : MonoBehaviour {
     private void ShootTrigger()
     {
         //shotScript.Shoot(currentTarget);
-        FindObjectOfType<AudioManager>().Play("Cannon");
         Shoot(currentTarget);
         //Debug.Log("We shoot some stuff!");
     }
@@ -219,6 +221,8 @@ public class TurretAI : MonoBehaviour {
 
     public void Shoot(GameObject go)
     {
+        GameManager.instance.audioManager.Play("Cannon");
+
         if (turretType == TurretType.Catapult)
         {
             lockOnPos = go.transform;
@@ -281,6 +285,7 @@ public class TurretAI : MonoBehaviour {
 
             currentLevel++;
             _gold.GetComponent<GoldManager>().RemoveGold(cost * currentLevel);
+            currentValue += (cost * currentLevel);
         }
     }
 
@@ -319,7 +324,7 @@ public class TurretAI : MonoBehaviour {
     {
         if (set)
         {
-            _gold.GetComponent<GoldManager>().AddGold(cost);
+            _gold.GetComponent<GoldManager>().AddGold(currentValue); 
         }
 
         GameEvents.instance.OnDisableRanges -= RemoveRanges;

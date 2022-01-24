@@ -36,7 +36,7 @@ public class GoldManager : MonoBehaviour
             goldValue -= cost;
             gold.text = goldValue.ToString();
             turret.GetComponent<TurretAI>().set = true;
-            FindObjectOfType<AudioManager>().Play("Upgrade");
+            GameManager.instance.audioManager.Play("Upgrade");
 
         }
     }

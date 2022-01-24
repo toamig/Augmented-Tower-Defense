@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     private VuMarkHandler _vuMarkHandler;
     public VuMarkHandler vuMarkHandler => _vuMarkHandler;
 
+    private AudioManager _audioManager;
+    public AudioManager audioManager => _audioManager;
+
     private GameObject _portal;
     public GameObject portal => _portal;
 
@@ -82,6 +85,7 @@ public class GameManager : MonoBehaviour
     {
         _waveManager = GameObject.FindObjectOfType<WaveManager>();
         _vuMarkHandler = GameObject.FindObjectOfType<VuMarkHandler>();
+        _audioManager = GameObject.FindObjectOfType<AudioManager>();
         //_uIManager = GameObject.FindObjectOfType<UIManager>();
         //_cameraManager = GameObject.FindObjectOfType<CameraManager>();
         //_popUpDialogManager = GameObject.FindObjectOfType<PopUpDialogManager>();
