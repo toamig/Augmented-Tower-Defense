@@ -165,6 +165,7 @@ public class TurretAI : MonoBehaviour {
     private void ShootTrigger()
     {
         //shotScript.Shoot(currentTarget);
+        FindObjectOfType<AudioManager>().Play("Cannon");
         Shoot(currentTarget);
         //Debug.Log("We shoot some stuff!");
     }

@@ -72,6 +72,8 @@ public class Enemy : MonoBehaviour
         if(currentHealth <= 0)
         {
             Destroy(gameObject);
+            FindObjectOfType<AudioManager>().Play("Creature_death_1");
+
             _gold.GetComponent<GoldManager>().AddGold(goldOnKill);
         }
 
@@ -122,7 +124,7 @@ public class Enemy : MonoBehaviour
 
             castle.healthPoints -= attackDamage;
             GameEvents.instance.DamageTaken();
-
+            FindObjectOfType<AudioManager>().Play("Hit_2");
             Destroy(gameObject);
         }
     }

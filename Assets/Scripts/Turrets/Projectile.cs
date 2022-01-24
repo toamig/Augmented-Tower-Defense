@@ -121,6 +121,8 @@ public class Projectile : MonoBehaviour {
     public void Explosion()
     {
         Instantiate(explosion, transform.position, transform.rotation);
+        FindObjectOfType<AudioManager>().Play("Cannon_2");
+
         Destroy(gameObject);
     }
 }

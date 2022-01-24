@@ -47,6 +47,7 @@ public class WaveManager : MonoBehaviour
             {
                 if (!EnemyIsAlive())
                 {
+                    FindObjectOfType<AudioManager>().Play("New_round_2");
                     WaveCompleted();
                 }
                 else

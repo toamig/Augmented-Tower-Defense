@@ -90,6 +90,8 @@ public class WeatherController : MonoBehaviour
             heavyClouds.SetActive(true);
             lightRain.SetActive(true);
             heavyRain.SetActive(true);
+            FindObjectOfType<AudioManager>().Play("Rain");
+
             foreach (ParticleSystem ps in rainParticles)
             {
                 rainEmission = ps.emission;
@@ -114,6 +116,7 @@ public class WeatherController : MonoBehaviour
         }
         else if (weather == WeatherNetwork.WeatherTypes.Strom)
         {
+            FindObjectOfType<AudioManager>().Play("Wind");
             lightClouds.SetActive(true);
             heavyClouds.SetActive(true);
             lightRain.SetActive(true);

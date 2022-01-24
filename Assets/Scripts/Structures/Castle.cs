@@ -19,6 +19,8 @@ public class Castle : MonoBehaviour
     {
         if (healthPoints <= 0)
         {
+
+            FindObjectOfType<AudioManager>().Play("Defeat");
             Debug.Log("GGWP");
         }
     }

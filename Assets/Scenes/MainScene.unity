@@ -5154,35 +5154,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!21 &1092978082
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'ATD_VuMarkMaterial
-
-    89006'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 25569e9b653e7723820baae72f3b8765, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1109127647
 GameObject:
   m_ObjectHideFlags: 0
@@ -6227,6 +6198,35 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &1424659289
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'ATD_VuMarkMaterial
+
+    18222'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 25569e9b653e7723820baae72f3b8765, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1440857775
 GameObject:
   m_ObjectHideFlags: 0
@@ -6367,7 +6367,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1092978082}
+  - {fileID: 1424659289}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7702,6 +7702,7 @@ GameObject:
   - component: {fileID: 1735051187}
   - component: {fileID: 1735051186}
   - component: {fileID: 1735051185}
+  - component: {fileID: 1735051184}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: MainCamera
@@ -7709,6 +7710,109 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1735051184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735051183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b778c9d2b9591ff449e482ccc29954a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: 66e85a6c03adf514d897c735e3c4ab62, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 1
+    source: {fileID: 0}
+  - name: Cannon
+    clip: {fileID: 8300000, guid: 355207943eda571409e1c106da2087ed, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Cannon_2
+    clip: {fileID: 8300000, guid: 0570ac7133d7b03428137f2646467500, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Creature_death_1
+    clip: {fileID: 8300000, guid: a2165298cb461334a99bde579ed5ad83, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Creature_death_2
+    clip: {fileID: 8300000, guid: d3ace68d683f26a4099daee0cf161d78, type: 3}
+    volume: 0.48
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 66e85a6c03adf514d897c735e3c4ab62, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit_2
+    clip: {fileID: 8300000, guid: 0bbf852f7e76048459bd9bb35b9afaa4, type: 3}
+    volume: 0.272
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Footsteps
+    clip: {fileID: 8300000, guid: 9c2425156ec138349a1d632d12b0f297, type: 3}
+    volume: 0.272
+    pitch: 1.87
+    loop: 1
+    source: {fileID: 0}
+  - name: New_round
+    clip: {fileID: 8300000, guid: b8fdde0446ddbdb4f8681626f724a417, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: New_round_2
+    clip: {fileID: 8300000, guid: 3b0dca85718be3441bccc61d04af317a, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Rain
+    clip: {fileID: 8300000, guid: 37f000d7912c6704393f480f200c775f, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 1
+    source: {fileID: 0}
+  - name: Rocket_Path
+    clip: {fileID: 8300000, guid: b68ad43400960864493e9e1bcaef3bc1, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Upgrade
+    clip: {fileID: 8300000, guid: 43da1a2436480b44e86be9b2e92e5bb6, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Victory
+    clip: {fileID: 8300000, guid: 18e641ac347eb6047871ecf627b39226, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Wind
+    clip: {fileID: 8300000, guid: 80264cd301ae2154c8fe82103832d8ec, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
 --- !u!114 &1735051185
 MonoBehaviour:
   m_ObjectHideFlags: 0
