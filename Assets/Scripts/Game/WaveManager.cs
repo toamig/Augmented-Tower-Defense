@@ -14,6 +14,8 @@ public class WaveManager : MonoBehaviour
 
     public int nextWave;
 
+    public FinalScreen finalScreen;
+
     private SpawnState state = SpawnState.COUNTING;
 
     [System.Serializable]
@@ -43,9 +45,20 @@ public class WaveManager : MonoBehaviour
     {
         if (GameManager.instance.gameStarted)
         {
-            if (state == SpawnState.FINISHED)
+            Castle castle = GameManager.instance.castle.GetComponent<Castle>();
+
+            if (state == SpawnState.FINISHED && !EnemyIsAlive() && castle.healthPoints > 0)
             {
-                return;
+                finalScreen.text.text = "Victory";
+                finalScreen.gameObject.SetActive(true);
+            }
+            
+            if(castle.healthPoints <= 0)
+            {
+                state = SpawnState.FINISHED;
+
+                finalScreen.text.text = "Defeat";
+                finalScreen.gameObject.SetActive(true);
             }
 
             if (state == SpawnState.WAITING)
@@ -99,7 +112,6 @@ public class WaveManager : MonoBehaviour
         {
             for (int j = 0; j < wave.enemies[i].count; j++)
             {
-                Debug.Log("Spawning");
                 SpawnEnemy(wave.enemies[i].enemyType);
                 yield return new WaitForSeconds(wave.timeBetweenEnemies);
             }
