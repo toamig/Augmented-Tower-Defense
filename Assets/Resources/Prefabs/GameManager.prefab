@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6652943332218534252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6652943332218534251}
+  - component: {fileID: 6652943332218534253}
+  - component: {fileID: 9140762933491703328}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6652943332218534251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6652943332218534252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.1304097, y: 1.3576376, z: 3.722353}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6652943332218534253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6652943332218534252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8754160b10cc34b87f288e48eacf61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _difficulty: 0
+  gameStarted: 0
+--- !u!114 &9140762933491703328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6652943332218534252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b778c9d2b9591ff449e482ccc29954a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: 66e85a6c03adf514d897c735e3c4ab62, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 1
+    source: {fileID: 0}
+  - name: Cannon
+    clip: {fileID: 8300000, guid: 355207943eda571409e1c106da2087ed, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Cannon_2
+    clip: {fileID: 8300000, guid: 0570ac7133d7b03428137f2646467500, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Creature_death_1
+    clip: {fileID: 8300000, guid: a2165298cb461334a99bde579ed5ad83, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Creature_death_2
+    clip: {fileID: 8300000, guid: d3ace68d683f26a4099daee0cf161d78, type: 3}
+    volume: 0.48
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 66e85a6c03adf514d897c735e3c4ab62, type: 3}
+    volume: 0.594
+    pitch: 2.07
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit_2
+    clip: {fileID: 8300000, guid: 0bbf852f7e76048459bd9bb35b9afaa4, type: 3}
+    volume: 0.272
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Footsteps
+    clip: {fileID: 8300000, guid: 9c2425156ec138349a1d632d12b0f297, type: 3}
+    volume: 0.272
+    pitch: 1.87
+    loop: 1
+    source: {fileID: 0}
+  - name: New_round
+    clip: {fileID: 8300000, guid: b8fdde0446ddbdb4f8681626f724a417, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: New_round_2
+    clip: {fileID: 8300000, guid: 3b0dca85718be3441bccc61d04af317a, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Rain
+    clip: {fileID: 8300000, guid: 37f000d7912c6704393f480f200c775f, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 1
+    source: {fileID: 0}
+  - name: Rocket_Path
+    clip: {fileID: 8300000, guid: b68ad43400960864493e9e1bcaef3bc1, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Upgrade
+    clip: {fileID: 8300000, guid: 43da1a2436480b44e86be9b2e92e5bb6, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Victory
+    clip: {fileID: 8300000, guid: 18e641ac347eb6047871ecf627b39226, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Wind
+    clip: {fileID: 8300000, guid: 80264cd301ae2154c8fe82103832d8ec, type: 3}
+    volume: 0.484
+    pitch: 1.87
+    loop: 0
+    source: {fileID: 0}

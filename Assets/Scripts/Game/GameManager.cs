@@ -73,13 +73,20 @@ public class GameManager : MonoBehaviour
             gameStarted = false;
             InitializeManagers();
         }
+
+        else if(arg0.name == "StartScene")
+        {
+            _audioManager = GameObject.FindObjectOfType<AudioManager>();
+            audioManager.Play("Theme");
+        }
+
+
     }
 
     public void InitializeManagers()
     {
         _waveManager = GameObject.FindObjectOfType<WaveManager>();
         _vuMarkHandler = GameObject.FindObjectOfType<VuMarkHandler>();
-        _audioManager = GameObject.FindObjectOfType<AudioManager>();
         //_uIManager = GameObject.FindObjectOfType<UIManager>();
         //_cameraManager = GameObject.FindObjectOfType<CameraManager>();
         //_popUpDialogManager = GameObject.FindObjectOfType<PopUpDialogManager>();
