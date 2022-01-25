@@ -48,7 +48,6 @@ public class WaveManager : MonoBehaviour
             {
                 if (!EnemyIsAlive())
                 {
-                    GameManager.instance.audioManager.Play("New_round_2");
                     WaveCompleted();
                 }
                 else
@@ -80,6 +79,7 @@ public class WaveManager : MonoBehaviour
         {
             state = SpawnState.FINISHED;
             GameEvents.instance.Victory();
+            GameManager.instance.audioManager.Play("Victory");
         }
         else
         {
@@ -91,6 +91,8 @@ public class WaveManager : MonoBehaviour
 
     public IEnumerator SpawnWave(Wave wave)
     {
+        GameManager.instance.audioManager.Play("New_round_2");
+
         state = SpawnState.SPAWNING;
 
         for (int i = 0; i < wave.enemies.Length; i++)

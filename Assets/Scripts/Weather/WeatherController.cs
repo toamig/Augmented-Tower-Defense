@@ -18,7 +18,7 @@ public class WeatherController : MonoBehaviour
     void Awake()
     {
         WeatherNetwork.OnWeatherDataReceived += OnWeatherDataBroadcast;
-        GameEvents.instance.OnMapDetected += setWeather;
+        GameEvents.instance.OnMapDetected += SetWeather;
         weatherNetwork = new WeatherNetwork();
         StartCoroutine(weatherNetwork.ProcessWeather());
     }
@@ -33,7 +33,7 @@ public class WeatherController : MonoBehaviour
         weather = type;
     }
 
-    private void setWeather()
+    private void SetWeather()
     {
         if (weather == WeatherNetwork.WeatherTypes.Clear)
         {

@@ -79,10 +79,9 @@ public class Enemy : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            Destroy(gameObject);
             GameManager.instance.audioManager.Play("Creature_death_1");
-
             _gold.GetComponent<GoldManager>().AddGold(goldOnKill);
+            Destroy(gameObject);
         }
 
     }
